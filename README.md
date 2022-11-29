@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 
 ## Usage
 
-Create and export your server/remote functions in `*.server.ts` files:
+Export your remote functions in `*.server.ts` files:
 
 ```ts
 import { PrismaClient } from '@prisma/client'
@@ -31,7 +31,7 @@ export async function getTodos () {
 }
 ```
 
-On the client-side:
+Directly use any SQL/ORM query to retrieve & mutate data on client.
 
 ```vue
 <script setup lang="ts">
