@@ -2,7 +2,7 @@ import { fileURLToPath } from 'url'
 import { addImportsDir, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
 import fg from 'fast-glob'
 import { join } from 'pathe'
-import { transformRemoteFunctions } from '../dist/runtime/plugin'
+import { transformRemoteFunctions } from './runtime/plugin'
 
 export default defineNuxtModule({
   meta: {
