@@ -1,5 +1,5 @@
-import { addImports, addImportsDir, addServerHandler, addTemplate, addVitePlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { fileURLToPath } from 'url'
+import { addImportsDir, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
 import fg from 'fast-glob'
 import { join } from 'pathe'
 import { transformRemoteFunctions } from '../dist/runtime/plugin'
@@ -10,8 +10,6 @@ export default defineNuxtModule({
     configKey: 'remote'
   },
   async setup (options, nuxt) {
-    const { resolve } = createResolver(import.meta.url)
-
     const extGlob = '**/*.server.{ts,js}'
 
     const files: string[] = []
@@ -20,7 +18,7 @@ export default defineNuxtModule({
 
     // Transpile runtime
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    nuxt.options.build.transpile.push(runtimeDir)
+    nuxt.options.build.transpile.push(runtimeDir, join(runtimeDir, 'composables'))
 
     addServerHandler({
       route: '/api/__server_fn__',

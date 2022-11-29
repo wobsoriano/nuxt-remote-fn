@@ -28,11 +28,17 @@ async function transformExports (src: string) {
 
   const [, exports] = parse(src)
 
-  return exports.map((e) => {
+  const exportList = exports.map((e) => {
     if (e.n === 'default') {
       throw new Error('Default exports are not allowed!')
     }
 
-    return `export const ${e.n} = (...args) => useServerFunctions().${e.n}(...args)`
-  }).join('\n')
+    return `export const ${e.n} = (...args) => serverFn.${e.n}(...args)`
+  })
+
+  return `
+    import { useServerFunctions } from '#imports'
+    const serverFn = useServerFunctions()
+    ${exportList.join('\n')}
+  `
 }

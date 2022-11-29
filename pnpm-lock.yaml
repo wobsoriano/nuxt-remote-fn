@@ -1,32 +1,44 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@nuxt/kit': ^3.0.0
-  '@nuxt/module-builder': ^0.2.1
-  '@nuxt/schema': ^3.0.0
-  '@nuxtjs/eslint-config-typescript': ^12.0.0
-  es-module-lexer: ^1.1.0
-  eslint: ^8.28.0
-  fast-glob: ^3.2.12
-  h3: ^1.0.1
-  nuxt: ^3.0.0
-  ofetch: ^1.0.0
-  pathe: ^1.0.0
+importers:
 
-dependencies:
-  '@nuxt/kit': 3.0.0
-  es-module-lexer: 1.1.0
-  fast-glob: 3.2.12
-  h3: 1.0.1
-  ofetch: 1.0.0
-  pathe: 1.0.0
+  .:
+    specifiers:
+      '@nuxt/kit': ^3.0.0
+      '@nuxt/module-builder': ^0.2.1
+      '@nuxt/schema': ^3.0.0
+      '@nuxtjs/eslint-config-typescript': ^12.0.0
+      es-module-lexer: ^1.1.0
+      eslint: ^8.28.0
+      fast-glob: ^3.2.12
+      h3: ^1.0.1
+      nuxt: ^3.0.0
+      ofetch: ^1.0.0
+      pathe: ^1.0.0
+    dependencies:
+      '@nuxt/kit': 3.0.0
+      es-module-lexer: 1.1.0
+      fast-glob: 3.2.12
+      h3: 1.0.1
+      ofetch: 1.0.0
+      pathe: 1.0.0
+    devDependencies:
+      '@nuxt/module-builder': 0.2.1
+      '@nuxt/schema': 3.0.0
+      '@nuxtjs/eslint-config-typescript': 12.0.0_eslint@8.28.0
+      eslint: 8.28.0
+      nuxt: 3.0.0_eslint@8.28.0
 
-devDependencies:
-  '@nuxt/module-builder': 0.2.1
-  '@nuxt/schema': 3.0.0
-  '@nuxtjs/eslint-config-typescript': 12.0.0_eslint@8.28.0
-  eslint: 8.28.0
-  nuxt: 3.0.0_eslint@8.28.0
+  playground:
+    specifiers:
+      '@prisma/client': ^4.6.1
+      esno: ^0.16.3
+      prisma: ^4.6.1
+    dependencies:
+      '@prisma/client': 4.6.1_prisma@4.6.1
+    devDependencies:
+      esno: 0.16.3
+      prisma: 4.6.1
 
 packages:
 
@@ -308,6 +320,27 @@ packages:
     resolution: {integrity: sha512-MVbXLbTcAotOPUj0pAMhVtJ+3/kFkwJqc5qNOleOZTv6QkZZABDMS21dSrSlVswEHwrpWC03e4fWytjqKvuE2A==}
     dependencies:
       mime: 3.0.0
+    dev: true
+
+  /@esbuild-kit/cjs-loader/2.4.1:
+    resolution: {integrity: sha512-lhc/XLith28QdW0HpHZvZKkorWgmCNT7sVelMHDj3HFdTfdqkwEKvT+aXVQtNAmCC39VJhunDkWhONWB7335mg==}
+    dependencies:
+      '@esbuild-kit/core-utils': 3.0.0
+      get-tsconfig: 4.2.0
+    dev: true
+
+  /@esbuild-kit/core-utils/3.0.0:
+    resolution: {integrity: sha512-TXmwH9EFS3DC2sI2YJWJBgHGhlteK0Xyu1VabwetMULfm3oYhbrsWV5yaSr2NTWZIgDGVLHbRf0inxbjXqAcmQ==}
+    dependencies:
+      esbuild: 0.15.16
+      source-map-support: 0.5.21
+    dev: true
+
+  /@esbuild-kit/esm-loader/2.5.1:
+    resolution: {integrity: sha512-UfG/KLaNGR48+C9e8cDrRowhN9u+d/aCKpnA3E3Zyevup76fIpKmzm8DWeNG40CbEN8ZN8HaEs+o63pRQrZ+Fw==}
+    dependencies:
+      '@esbuild-kit/core-utils': 3.0.0
+      get-tsconfig: 4.2.0
     dev: true
 
   /@esbuild/android-arm/0.15.16:
@@ -700,6 +733,28 @@ packages:
       tiny-glob: 0.2.9
       tslib: 2.4.1
     dev: true
+
+  /@prisma/client/4.6.1_prisma@4.6.1:
+    resolution: {integrity: sha512-M1+NNrMzqaOIxT7PBGcTs3IZo7d1EW/+gVQd4C4gUgWBDGgD9AcIeZnUSidgWClmpMSgVUdnVORjsWWGUameYA==}
+    engines: {node: '>=14.17'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32
+      prisma: 4.6.1
+    dev: false
+
+  /@prisma/engines-version/4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32:
+    resolution: {integrity: sha512-HUCmkXAU2jqp2O1RvNtbE+seLGLyJGEABZS/R38rZjSAafAy0WzBuHq+tbZMnD+b5OSCsTVtIPVcuvx1ySxcWQ==}
+    dev: false
+
+  /@prisma/engines/4.6.1:
+    resolution: {integrity: sha512-3u2/XxvxB+Q7cMXHnKU0CpBiUK1QWqpgiBv28YDo1zOIJE3FCF8DI2vrp6vuwjGt5h0JGXDSvmSf4D4maVjJdw==}
+    requiresBuild: true
 
   /@rollup/plugin-alias/4.0.2_rollup@2.79.1:
     resolution: {integrity: sha512-1hv7dBOZZwo3SEupxn4UA2N0EDThqSSS+wI1St1TNTBtOZvUchyIClyHcnDcjjrReTPZ47Faedrhblv4n+T5UQ==}
@@ -2735,6 +2790,13 @@ packages:
       text-table: 0.2.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /esno/0.16.3:
+    resolution: {integrity: sha512-6slSBEV1lMKcX13DBifvnDFpNno5WXhw4j/ff7RI0y51BZiDqEe5dNhhjhIQ3iCOQuzsm2MbVzmwqbN78BBhPg==}
+    hasBin: true
+    dependencies:
+      tsx: 3.12.1
     dev: true
 
   /espree/9.4.1:
@@ -4815,6 +4877,14 @@ packages:
     engines: {node: ^14.13.1 || >=16.0.0}
     dev: true
 
+  /prisma/4.6.1:
+    resolution: {integrity: sha512-BR4itMCuzrDV4tn3e2TF+nh1zIX/RVU0isKtKoN28ADeoJ9nYaMhiuRRkFd2TZN8+l/XfYzoRKyHzUFXLQhmBQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 4.6.1
+
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
@@ -5533,6 +5603,17 @@ packages:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: 1.14.1
+    dev: true
+
+  /tsx/3.12.1:
+    resolution: {integrity: sha512-Rcg1x+rNe7qwlP8j7kx4VjP/pJo/V57k+17hlrn6a7FuQLNwkaw5W4JF75tYornNVCxkXdSUnqlIT8JY/ttvIw==}
+    hasBin: true
+    dependencies:
+      '@esbuild-kit/cjs-loader': 2.4.1
+      '@esbuild-kit/core-utils': 3.0.0
+      '@esbuild-kit/esm-loader': 2.5.1
+    optionalDependencies:
+      fsevents: 2.3.2
     dev: true
 
   /type-check/0.4.0:

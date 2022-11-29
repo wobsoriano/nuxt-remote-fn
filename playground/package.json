@@ -1,4 +1,14 @@
 {
-  "private": true,
-  "name": "my-module-playground"
+  "name": "playground",
+  "devDependencies": {
+    "esno": "^0.16.3",
+    "prisma": "^4.6.1"
+  },
+  "prisma": {
+    "seed": "esno prisma/seed.ts",
+    "schema": "./prisma/schema.prisma"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.6.1"
+  }
 }
