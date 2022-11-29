@@ -14,11 +14,18 @@ export default defineNuxtModule({
 
     const files: string[] = []
 
-    const handlerPath = join(nuxt.options.buildDir, 'server-fn-handler.ts')
+    nuxt.hook('builder:watch', async (e, path) => {
+      if (e === 'change') { return }
+      if (path.includes('.server.')) {
+        await scanRemoteFunctions()
+        await nuxt.callHook('builder:generateApp')
+      }
+    })
 
-    // Transpile runtime
+    // Transpile runtime and handler
+    const handlerPath = join(nuxt.options.buildDir, 'remote-event-handler.ts')
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    nuxt.options.build.transpile.push(runtimeDir)
+    nuxt.options.build.transpile.push(runtimeDir, handlerPath)
 
     addServerHandler({
       route: '/api/__remote_fn__',
@@ -31,14 +38,14 @@ export default defineNuxtModule({
     await scanRemoteFunctions()
 
     addTemplate({
-      filename: 'server-fn-handler.ts',
+      filename: 'remote-event-handler.ts',
       write: true,
       getContents () {
         return `
-          import { createRemoteFnHandler } from '${join(runtimeDir, 'server')}'
-          ${files.map((i, idx) => `import * as functions${idx} from ${JSON.stringify(i.replace(/\.ts$/, ''))}`).join('\n')}
-          export default createRemoteFnHandler(Object.assign({}, ${files.map((_, idx) => `functions${idx}`).join(', ')}))
-          `.trimStart()
+        import { createRemoteFnHandler } from '${join(runtimeDir, 'server')}'
+        ${files.map((i, idx) => `import * as functions${idx} from ${JSON.stringify(i.replace(/\.ts$/, ''))}`).join('\n')}
+        export default createRemoteFnHandler(Object.assign({}, ${files.map((_, idx) => `functions${idx}`).join(', ')}))
+      `.trimStart()
       }
     })
 
