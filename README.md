@@ -18,19 +18,20 @@ export default defineNuxtConfig({
 
 ## Usage
 
-Create and export your remote functions in `*.server.ts` files:
+Create and export your server/remote functions in `*.server.ts` files:
 
 ```ts
-// todo.server.ts
-// Environment: Server
+import { PrismaClient } from '@prisma/client'
 
-import { prisma } from './prisma'
+const prisma = new PrismaClient()
 
 export async function getTodos () {
   const todos = await prisma.todo.findMany()
   return todos
 }
 ```
+
+On the client-side:
 
 ```vue
 <script setup lang="ts">
