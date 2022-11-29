@@ -53,7 +53,7 @@ const todos = await getTodos()
 
 ## Credits
 
-This project is inspired by [Telefunc](https://telefunc.com) and [nuxt-server-fn](https://github.com/antfu/nuxt-server-fn)
+This project is based on [Telefunc](https://telefunc.com) and [nuxt-server-fn](https://github.com/antfu/nuxt-server-fn)
 
 ## License
 
