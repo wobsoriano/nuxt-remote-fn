@@ -35,9 +35,9 @@ export default defineNuxtModule({
       write: true,
       getContents () {
         return `
-          import { createServerFnAPI } from '${join(runtimeDir, 'server')}'
+          import { createRemoteFnHandler } from '${join(runtimeDir, 'server')}'
           ${files.map((i, idx) => `import * as functions${idx} from ${JSON.stringify(i.replace(/\.ts$/, ''))}`).join('\n')}
-          export default createServerFnAPI(Object.assign({}, ${files.map((_, idx) => `functions${idx}`).join(', ')}))
+          export default createRemoteFnHandler(Object.assign({}, ${files.map((_, idx) => `functions${idx}`).join(', ')}))
           `.trimStart()
       }
     })
