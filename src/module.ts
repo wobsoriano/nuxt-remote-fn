@@ -2,7 +2,8 @@ import { fileURLToPath } from 'url'
 import { addImportsDir, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
 import fg from 'fast-glob'
 import { join } from 'pathe'
-import { transformRemoteFunctions } from './runtime/plugin'
+import dedent from 'dedent'
+import { getModuleId, transformRemoteFunctions } from './runtime/plugin'
 
 export default defineNuxtModule({
   meta: {
@@ -28,7 +29,7 @@ export default defineNuxtModule({
     nuxt.options.build.transpile.push(runtimeDir, handlerPath)
 
     addServerHandler({
-      route: '/api/_remote_fn',
+      route: '/api/_remote_fn/:moduleId',
       handler: handlerPath
     })
 
@@ -41,11 +42,17 @@ export default defineNuxtModule({
       filename: 'remote-event-handler.ts',
       write: true,
       getContents () {
-        return `
-        import { createRemoteFnHandler } from '${join(runtimeDir, 'server')}'
-        ${files.map((i, idx) => `import * as functions${idx} from ${JSON.stringify(i.replace(/\.ts$/, ''))}`).join('\n')}
-        export default createRemoteFnHandler(Object.assign({}, ${files.map((_, idx) => `functions${idx}`).join(', ')}))
-      `.trimStart()
+        const filesWithId = files.map(file => ({
+          file: file.replace(/\.ts$/, ''),
+          id: getModuleId(file)
+        }))
+        return dedent`
+          import { createRemoteFnHandler } from '${join(runtimeDir, 'server')}'
+          ${filesWithId.map(i => `import * as ${i.id} from '${i.file}'`).join('\n')}
+          export default createRemoteFnHandler({
+            ${filesWithId.map(i => i.id).join(',\n')}
+          })
+        `
       }
     })
 

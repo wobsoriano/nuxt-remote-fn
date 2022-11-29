@@ -1,5 +1,5 @@
 import type { EventHandler } from 'h3'
-import { eventHandler, readBody, isMethod, createError } from 'h3'
+import { eventHandler, isMethod, createError } from 'h3'
 
 export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
   return eventHandler(async (event) => {
@@ -10,19 +10,19 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
       })
     }
 
-    const body = await readBody(event)
-    const name = body.name
-    const args = body.args || []
+    const { input } = await readBody(event)
+    const { moduleId } = event.context.params
+    const [id, name] = moduleId.split('.')
 
-    if (!name || !(name in functions)) {
+    if (!(id in functions)) {
       throw createError({
         statusCode: 404,
-        statusMessage: 'Unknown/missing function'
+        statusMessage: 'Unknown module received.'
       })
     }
 
     // @ts-ignore
-    const result = await functions[name].apply(event, args)
+    const result = await functions[id][name].apply(event, input)
     return result
   })
 }

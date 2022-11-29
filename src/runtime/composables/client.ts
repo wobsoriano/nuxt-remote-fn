@@ -1,24 +1,10 @@
 import { $fetch } from 'ofetch'
 
-function createRemoteFunctions (route: string) {
-  const callable = () => {}
-  return new Proxy(callable, {
-    get (_, name) {
-      return (...args: any[]) => {
-        return $fetch(route, {
-          method: 'POST',
-          body: {
-            name,
-            args
-          }
-        })
-      }
+export function useRemoteFunction (moduleId: string, args: any[]) {
+  return $fetch(`/api/_remote_fn/${moduleId}`, {
+    method: 'POST',
+    body: {
+      input: args
     }
   })
-}
-
-const remoteClient = createRemoteFunctions('/api/_remote_fn')
-
-export function useRemoteFunctions () {
-  return remoteClient
 }

@@ -70,7 +70,7 @@ export function getTodos(this: H3Event, otherArg: any) {
 
 ## Credits
 
-This project is based on [Telefunc](https://telefunc.com) and [nuxt-server-fn](https://github.com/antfu/nuxt-server-fn)
+This project is inspired by [Telefunc](https://telefunc.com) and [nuxt-server-fn](https://github.com/antfu/nuxt-server-fn).
 
 ## License
 
