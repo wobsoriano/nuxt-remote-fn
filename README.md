@@ -53,7 +53,7 @@ const todos = await getTodos()
 </template>
 ```
 
-The `.server` part of the filename informs the module that this code should never end up in the browser and to convert it to an API call instead.
+The `.server` part of the filename informs the module that this code should never end up in the browser and to convert it to an API call instead (`POST /api/__remote/todo.getTodos`).
 
 Checkout [the playground example](/playground).
 
