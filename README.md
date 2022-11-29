@@ -55,6 +55,19 @@ const todos = await getTodos()
 
 Checkout [the playground example](/playground).
 
+## H3 Event
+
+The h3 event is available as `this` for functions:
+
+```ts
+import type { H3Event } from 'h3'
+
+export function getTodos(this: H3Event, otherArg: any) {
+  const body = useBody(this)
+  // ...
+}
+```
+
 ## Credits
 
 This project is based on [Telefunc](https://telefunc.com) and [nuxt-server-fn](https://github.com/antfu/nuxt-server-fn)
