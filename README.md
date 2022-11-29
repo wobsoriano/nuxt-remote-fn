@@ -1,4 +1,4 @@
-# nuxt-remote-functions
+# nuxt-remote-fn
 
 Remote Functions. Instead of [Event Handlers](https://nitro.unjs.io/guide/introduction/routing).
 
