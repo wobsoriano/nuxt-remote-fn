@@ -62,10 +62,11 @@ Checkout [the playground example](/playground).
 The h3 event is available as `this` for functions:
 
 ```ts
+import { readBody } from 'h3'
 import type { H3Event } from 'h3'
 
-export function getTodos(this: H3Event, otherArg: any) {
-  const body = useBody(this)
+export async function getTodos(this: H3Event, otherArg: any) {
+  const body = await readBody(this)
   // ...
 }
 ```
