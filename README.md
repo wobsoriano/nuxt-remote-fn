@@ -8,7 +8,7 @@ Remote Functions. Instead of Event Handlers (API).
 pnpm add nuxt-remote-fn
 ```
 
-```
+```ts
 export default defineNuxtConfig({
   modules: [
     'nuxt-remote-fn',
