@@ -9,7 +9,7 @@ export default defineNuxtModule({
     name: 'nuxt-remote-functions',
     configKey: 'remote'
   },
-  async setup (options, nuxt) {
+  async setup (_, nuxt) {
     const extGlob = '**/*.server.{ts,js}'
 
     const files: string[] = []
@@ -21,14 +21,14 @@ export default defineNuxtModule({
     nuxt.options.build.transpile.push(runtimeDir)
 
     addServerHandler({
-      route: '/api/__server_fn__',
+      route: '/api/__remote_fn__',
       handler: handlerPath
     })
 
     addVitePlugin(transformRemoteFunctions())
     addImportsDir(join(runtimeDir, 'composables'))
 
-    await scanServerFunctions()
+    await scanRemoteFunctions()
 
     addTemplate({
       filename: 'server-fn-handler.ts',
@@ -42,7 +42,7 @@ export default defineNuxtModule({
       }
     })
 
-    async function scanServerFunctions () {
+    async function scanRemoteFunctions () {
       files.length = 0
       const updatedFiles = await fg(extGlob, {
         cwd: nuxt.options.rootDir,

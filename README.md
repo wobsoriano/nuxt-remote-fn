@@ -1,4 +1,6 @@
-# Nuxt Module
+# nuxt-remote-functions
+
+Remote Functions. Instead of Event Handlers.
 
 ## Development
 

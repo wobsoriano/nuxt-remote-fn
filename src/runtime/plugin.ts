@@ -33,12 +33,12 @@ async function transformExports (src: string) {
       throw new Error('Default exports are not allowed!')
     }
 
-    return `export const ${e.n} = (...args) => serverFn.${e.n}(...args)`
+    return `export const ${e.n} = (...args) => client.${e.n}(...args)`
   })
 
   return `
-    import { useServerFunctions } from '#imports'
-    const serverFn = useServerFunctions()
+    import { useRemoteFunctions } from '#imports'
+    const client = useRemoteFunctions()
     ${exportList.join('\n')}
   `
 }

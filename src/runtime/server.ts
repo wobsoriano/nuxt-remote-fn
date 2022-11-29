@@ -1,21 +1,18 @@
 import type { EventHandler } from 'h3'
-import { eventHandler, readBody, isMethod } from 'h3'
-import { getQuery } from 'ufo'
+import { eventHandler, readBody, isMethod, createError } from 'h3'
 
 export function createServerFnAPI<T> (functions: T): EventHandler<T> {
   return eventHandler(async (event) => {
-    let name: string | undefined
-    let args: any[] = []
-
-    if (isMethod(event, 'POST')) {
-      const body = await readBody(event)
-      name = body.name
-      args = body.args || []
-    } else {
-      const query = getQuery(event.path as string) as Record<string, string>
-      name = query.name
-      args = JSON.parse(query.args || '[]') || []
+    if (!isMethod(event, 'POST')) {
+      throw createError({
+        statusCode: 401,
+        statusMessage: 'Only POST requests are allowed.'
+      })
     }
+
+    const body = await readBody(event)
+    const name = body.name
+    const args = body.args || []
 
     if (!name || !(name in functions)) {
       event.node.res.statusCode = 404

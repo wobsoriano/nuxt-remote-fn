@@ -7,8 +7,8 @@ const todos = await getTodos()
 <template>
   <div>
     <ul>
-      <li>
-        <NuxtLink v-for="todo in todos" :key="todo.id" :to="`/todos/${todo.id}`">
+      <li v-for="todo in todos" :key="todo.id">
+        <NuxtLink :to="`/todos/${todo.id}`">
           {{ todo.title }}
         </NuxtLink>
       </li>
