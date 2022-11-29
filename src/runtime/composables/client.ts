@@ -1,7 +1,7 @@
 import { $fetch } from 'ofetch'
 
 export function useRemoteFunction (moduleId: string, args: any[]) {
-  return $fetch(`/api/_remote_fn/${moduleId}`, {
+  return $fetch(`/api/__remote/${moduleId}`, {
     method: 'POST',
     body: {
       input: args

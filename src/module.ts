@@ -29,7 +29,7 @@ export default defineNuxtModule({
     nuxt.options.build.transpile.push(runtimeDir, handlerPath)
 
     addServerHandler({
-      route: '/api/_remote_fn/:moduleId',
+      route: '/api/__remote/:moduleId',
       handler: handlerPath
     })
 

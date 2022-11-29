@@ -1,5 +1,5 @@
 import type { EventHandler } from 'h3'
-import { eventHandler, isMethod, createError } from 'h3'
+import { eventHandler, isMethod, readBody, createError } from 'h3'
 
 export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
   return eventHandler(async (event) => {
