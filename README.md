@@ -53,6 +53,8 @@ const todos = await getTodos()
 </template>
 ```
 
+The `.server` part of the filename informs the module that this code should never end up in the browser and to convert it to an API call instead.
+
 Checkout [the playground example](/playground).
 
 ## H3 Event
