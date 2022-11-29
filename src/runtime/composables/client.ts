@@ -17,7 +17,7 @@ function createRemoteFunctions (route: string) {
   })
 }
 
-const remoteClient = createRemoteFunctions('/api/__remote_fn__')
+const remoteClient = createRemoteFunctions('/api/_remote_fn')
 
 export function useRemoteFunctions () {
   return remoteClient
