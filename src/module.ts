@@ -10,7 +10,7 @@ export default defineNuxtModule({
     configKey: 'remote'
   },
   async setup (_, nuxt) {
-    const extGlob = '**/*.server.{ts,js}'
+    const extGlob = '**/*.server.{ts,js,mjs}'
 
     const files: string[] = []
 

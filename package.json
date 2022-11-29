@@ -7,6 +7,10 @@
     ".": {
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
+    },
+    "./server": {
+      "import": "./dist/runtime/server.mjs",
+      "types": "./dist/runtime/server.d.ts"
     }
   },
   "main": "./dist/module.cjs",
