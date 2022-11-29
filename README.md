@@ -1,6 +1,6 @@
 # nuxt-remote-functions
 
-Remote Functions. Instead of Event Handlers (API).
+Remote Functions. Instead of [Event Handlers](https://nitro.unjs.io/guide/introduction/routing).
 
 ## Install
 
@@ -51,7 +51,10 @@ const todos = await getTodos()
 </template>
 ```
 
-## Development
+## Credits
 
-- Run `npm run dev:prepare` to generate type stubs.
-- Use `npm run dev` to start [playground](./playground) in development mode.
+This project is inspired by [Telefunc](https://telefunc.com) and [nuxt-server-fn](https://github.com/antfu/nuxt-server-fn)
+
+## License
+
+MIT
