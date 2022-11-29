@@ -10,9 +10,9 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
       })
     }
 
-    const { input } = await readBody(event)
-    const { moduleId } = event.context.params
-    const [id, name] = moduleId.split('.')
+    const { input } = await readBody(event) // arguments
+    const { moduleId } = event.context.params // 'todo.getTodos'
+    const [id, name] = moduleId.split('.') // ['todo', 'getTodos']
 
     if (!(id in functions)) {
       throw createError({
