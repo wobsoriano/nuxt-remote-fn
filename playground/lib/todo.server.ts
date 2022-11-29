@@ -1,4 +1,3 @@
-import type { H3Event } from 'h3'
 import { prisma } from './prisma'
 
 export async function getTodos () {
@@ -6,11 +5,32 @@ export async function getTodos () {
   return todos
 }
 
-export async function getTodo (id: number) {
-  const todo = await prisma.todo.findFirstOrThrow({
+export function getTodo (id: number) {
+  return prisma.todo.findFirstOrThrow({
     where: {
       id
     }
   })
-  return todo
+}
+
+export async function toggleTodo (id: number) {
+  const todo = await getTodo(id)
+  return prisma.todo.update({
+    where: { id },
+    data: { completed: !todo.completed }
+  })
+}
+
+export function deleteTodo (id: number) {
+  return prisma.todo.delete({ where: { id } })
+}
+
+export function addTodo ({ title, content }: { title: string; content: string }) {
+  return prisma.todo.create({
+    data: {
+      title,
+      content,
+      completed: false
+    }
+  })
 }
