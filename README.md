@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 
 ## Usage
 
-Export your remote functions in `*.server.ts` files:
+Export your remote functions in `*.server.{ts,js,mjs}` files:
 
 ```ts
 import { PrismaClient } from '@prisma/client'
