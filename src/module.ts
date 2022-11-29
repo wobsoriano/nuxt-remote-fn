@@ -18,7 +18,7 @@ export default defineNuxtModule({
 
     // Transpile runtime
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    nuxt.options.build.transpile.push(runtimeDir, join(runtimeDir, 'composables'))
+    nuxt.options.build.transpile.push(runtimeDir)
 
     addServerHandler({
       route: '/api/__server_fn__',

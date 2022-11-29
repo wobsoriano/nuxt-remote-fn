@@ -10,7 +10,7 @@ export function transformRemoteFunctions (): Plugin {
         return
       }
 
-      if (!id.includes('.server.') && !id.includes('.remote.')) {
+      if (!id.includes('.server.')) {
         return
       }
 
