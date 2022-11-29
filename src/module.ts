@@ -6,7 +6,7 @@ import { transformRemoteFunctions } from './runtime/plugin'
 
 export default defineNuxtModule({
   meta: {
-    name: 'nuxt-remote-functions',
+    name: 'nuxt-remote-fn',
     configKey: 'remote'
   },
   async setup (_, nuxt) {

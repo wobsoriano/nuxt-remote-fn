@@ -1,6 +1,6 @@
 {
-  "name": "my-module",
-  "version": "1.0.0",
+  "name": "nuxt-remote-fn",
+  "version": "0.0.0",
   "license": "MIT",
   "type": "module",
   "exports": {
