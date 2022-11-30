@@ -37,7 +37,7 @@ async function transformExports (src: string, moduleId: string) {
 
   const exportList = exports.map((e) => {
     if (e.n === 'default') {
-      throw new Error('Default exports are not allowed!')
+      return `export default (...args) => useRemoteFunction('${moduleId}.${e.n}', args)`
     }
 
     return `export const ${e.n} = (...args) => useRemoteFunction('${moduleId}.${e.n}', args)`

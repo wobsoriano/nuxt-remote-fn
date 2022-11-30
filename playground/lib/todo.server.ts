@@ -5,6 +5,8 @@ export async function getTodos () {
   return todos
 }
 
+export default getTodos
+
 export function getTodo (id: number) {
   return prisma.todo.findFirstOrThrow({
     where: {
