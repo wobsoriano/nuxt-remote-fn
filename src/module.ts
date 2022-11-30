@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'url'
-import { addImports, addImportsDir, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
+import { addImports, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
 import fg from 'fast-glob'
 import { join } from 'pathe'
 import dedent from 'dedent'
@@ -68,7 +68,6 @@ export default defineNuxtModule({
         onlyFiles: true,
         ignore: ['!**/node_modules', '!**/.nuxt', '!**/dist', '!**/.output']
       })
-      // @ts-ignore
       files.push(...new Set(updatedFiles))
       return files
     }
