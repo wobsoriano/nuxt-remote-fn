@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'url'
-import { addImportsDir, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
+import { addImports, addImportsDir, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
 import fg from 'fast-glob'
 import { join } from 'pathe'
 import dedent from 'dedent'
@@ -34,6 +34,11 @@ export default defineNuxtModule({
     })
 
     addVitePlugin(transformServerFiles())
+    addImports({
+      name: 'callRemoteFunction',
+      as: 'callRemoteFunction',
+      from: join(runtimeDir, 'client')
+    })
 
     await scanRemoteFunctions()
 

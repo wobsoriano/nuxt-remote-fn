@@ -1,7 +1,7 @@
 import { $fetch } from 'ofetch'
 
-export function callRemoteFunction (path: string, args: any[]) {
-  return $fetch(`/api/__remote/${path}`, {
+export function callRemoteFunction <T> (path: string, args: any[]) {
+  return $fetch<T>(`/api/__remote/${path}`, {
     method: 'POST',
     body: {
       input: args
