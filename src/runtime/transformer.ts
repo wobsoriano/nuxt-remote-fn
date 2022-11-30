@@ -37,14 +37,14 @@ async function transformExportsToRemoteFunctions (src: string, moduleId: string)
 
   const exportList = exports.map((e) => {
     if (e.n === 'default') {
-      return `export default (...args) => useRemoteFunction('${moduleId}.${e.n}', args)`
+      return `export default (...args) => callRemoteFunction('${moduleId}.${e.n}', args)`
     }
 
-    return `export const ${e.n} = (...args) => useRemoteFunction('${moduleId}.${e.n}', args)`
+    return `export const ${e.n} = (...args) => callRemoteFunction('${moduleId}.${e.n}', args)`
   })
 
   return `
-    import { useRemoteFunction } from '#imports'
+    import { callRemoteFunction } from '#imports'
     ${exportList.join('\n')}
   `
 }
