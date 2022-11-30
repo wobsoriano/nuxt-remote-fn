@@ -66,7 +66,7 @@ export default defineNuxtModule({
         cwd: nuxt.options.rootDir,
         absolute: true,
         onlyFiles: true,
-        ignore: ['!**/node_modules', '!**/.nuxt']
+        ignore: ['!**/node_modules', '!**/.nuxt', '!**/dist', '!**/.output']
       })
       // @ts-ignore
       files.push(...new Set(updatedFiles))
