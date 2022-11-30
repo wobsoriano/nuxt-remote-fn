@@ -11,10 +11,10 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
     }
 
     const { input } = await readBody(event) // arguments
-    const { moduleId } = event.context.params // 'todo.getTodos'
-    const [id, name] = moduleId.split('.') // ['todo', 'getTodos']
+    const { path } = event.context.params // 'todo.getTodos'
+    const [moduleId, functionName] = path.split('.') // ['todo', 'getTodos']
 
-    if (!(id in functions)) {
+    if (!(moduleId in functions)) {
       throw createError({
         statusCode: 404,
         statusMessage: 'Unknown module received.'
@@ -22,7 +22,7 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
     }
 
     // @ts-ignore
-    const result = await functions[id][name].apply(event, input)
+    const result = await functions[moduleId][functionName].apply(event, input)
     return result
   })
 }
