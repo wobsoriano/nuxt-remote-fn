@@ -16,6 +16,7 @@ importers:
       fast-glob: ^3.2.12
       h3: ^1.0.1
       nuxt: ^3.0.0
+      nuxt-remote-fn: workspace:*
       ofetch: ^1.0.0
       pathe: ^1.0.0
     dependencies:
@@ -34,6 +35,7 @@ importers:
       bumpp: 8.2.1
       eslint: 8.28.0
       nuxt: 3.0.0_eslint@8.28.0
+      nuxt-remote-fn: 'link:'
 
   playground:
     specifiers:

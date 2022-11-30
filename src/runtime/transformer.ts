@@ -44,7 +44,7 @@ async function transformExportsToRemoteFunctions (src: string, moduleId: string)
   })
 
   return `
-    import { callRemoteFunction } from '#imports'
+    import { callRemoteFunction } from 'nuxt-remote-fn/client'
     ${exportList.join('\n')}
   `
 }

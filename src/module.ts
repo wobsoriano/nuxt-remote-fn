@@ -34,7 +34,6 @@ export default defineNuxtModule({
     })
 
     addVitePlugin(transformServerFiles())
-    addImportsDir(join(runtimeDir, 'composables'))
 
     await scanRemoteFunctions()
 
