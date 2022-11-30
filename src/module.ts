@@ -11,6 +11,9 @@ export default defineNuxtModule({
     configKey: 'remote'
   },
   async setup (_, nuxt) {
+    const extGlob = '**/*.server.{ts,js,mjs}'
+    const files: string[] = []
+
     // Transpile runtime and handler
     const handlerPath = join(nuxt.options.buildDir, 'remote-event-handler.ts')
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
@@ -39,7 +42,6 @@ export default defineNuxtModule({
 
     await scanRemoteFunctions()
 
-    const files: string[] = []
     addTemplate({
       filename: 'remote-event-handler.ts',
       write: true,
@@ -58,7 +60,6 @@ export default defineNuxtModule({
       }
     })
 
-    const extGlob = '**/*.server.{ts,js,mjs}'
     async function scanRemoteFunctions () {
       files.length = 0
       const updatedFiles = await fg(extGlob, {
