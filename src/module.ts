@@ -62,7 +62,7 @@ export default defineNuxtModule({
     async function scanRemoteFunctions () {
       files.length = 0
       const updatedFiles = await fg(extGlob, {
-        cwd: nuxt.options.rootDir,
+        cwd: nuxt.options.srcDir,
         absolute: true,
         onlyFiles: true,
         ignore: ['!**/node_modules', '!**/.nuxt', '!**/dist', '!**/.output']
