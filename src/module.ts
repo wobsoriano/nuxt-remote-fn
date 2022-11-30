@@ -8,7 +8,7 @@ import { getModuleId, transformServerFiles } from './runtime/transformer'
 export default defineNuxtModule({
   meta: {
     name: 'nuxt-remote-fn',
-    configKey: 'remote'
+    configKey: 'remoteFn'
   },
   async setup (_, nuxt) {
     const extGlob = '**/*.server.{ts,js,mjs}'
