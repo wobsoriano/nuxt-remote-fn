@@ -11,9 +11,10 @@ export default defineNuxtModule({
     configKey: 'remote'
   },
   async setup (_, nuxt) {
-    const extGlob = '**/*.server.{ts,js,mjs}'
-
-    const files: string[] = []
+    // Transpile runtime and handler
+    const handlerPath = join(nuxt.options.buildDir, 'remote-event-handler.ts')
+    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
+    nuxt.options.build.transpile.push(runtimeDir, handlerPath)
 
     nuxt.hook('builder:watch', async (e, path) => {
       if (e === 'change') { return }
@@ -23,17 +24,13 @@ export default defineNuxtModule({
       }
     })
 
-    // Transpile runtime and handler
-    const handlerPath = join(nuxt.options.buildDir, 'remote-event-handler.ts')
-    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    nuxt.options.build.transpile.push(runtimeDir, handlerPath)
-
     addServerHandler({
       route: '/api/__remote/:path',
       handler: handlerPath
     })
 
     addVitePlugin(transformServerFiles())
+
     addImports({
       name: 'callRemoteFunction',
       as: 'callRemoteFunction',
@@ -42,6 +39,7 @@ export default defineNuxtModule({
 
     await scanRemoteFunctions()
 
+    const files: string[] = []
     addTemplate({
       filename: 'remote-event-handler.ts',
       write: true,
@@ -60,6 +58,7 @@ export default defineNuxtModule({
       }
     })
 
+    const extGlob = '**/*.server.{ts,js,mjs}'
     async function scanRemoteFunctions () {
       files.length = 0
       const updatedFiles = await fg(extGlob, {
