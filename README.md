@@ -73,7 +73,7 @@ export async function getTodos(this: H3Event, otherArg: any) {
 
 ## Development
 
-- Run `pnpm install`.
+- Run `cp playground/.env.example playground/.env`
 - Run `pnpm dev:prepare` to generate type stubs.
 - Use `pnpm dev` to start [playground](./playground) in development mode.
 
