@@ -1,6 +1,8 @@
 {
   "name": "nuxt-remote-fn",
   "version": "0.1.4",
+  "description": "Remote Functions. Instead of Event Handlers.",
+  "keywords": ["nuxt", "remote", "rpc", "http", "h3", "vue"],
   "license": "MIT",
   "type": "module",
   "exports": {
