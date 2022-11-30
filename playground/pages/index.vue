@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAsyncData } from '#app'
-import getTodos, { deleteTodo, toggleTodo } from '~~/lib/todo.server'
+import { deleteTodo, toggleTodo, getTodos } from '~~/lib/todo.server'
 
 const { data: todos, refresh } = await useAsyncData(() => getTodos())
 
