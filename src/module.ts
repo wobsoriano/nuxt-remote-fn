@@ -47,7 +47,7 @@ export default defineNuxtModule({
       write: true,
       getContents () {
         const filesWithId = files.map(file => ({
-          file: file.replace(/\.ts$/, ''),
+          file: file.replace(/\.{ts,js,mjs}$/, ''),
           id: getModuleId(file)
         }))
         return dedent`
