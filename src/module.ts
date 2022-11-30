@@ -3,7 +3,7 @@ import { addImportsDir, addServerHandler, addTemplate, addVitePlugin, defineNuxt
 import fg from 'fast-glob'
 import { join } from 'pathe'
 import dedent from 'dedent'
-import { getModuleId, transformRemoteFunctions } from './runtime/plugin'
+import { getModuleId, transformServerFiles } from './runtime/transformer'
 
 export default defineNuxtModule({
   meta: {
@@ -33,7 +33,7 @@ export default defineNuxtModule({
       handler: handlerPath
     })
 
-    addVitePlugin(transformRemoteFunctions())
+    addVitePlugin(transformServerFiles())
     addImportsDir(join(runtimeDir, 'composables'))
 
     await scanRemoteFunctions()

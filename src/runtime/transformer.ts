@@ -7,7 +7,7 @@ export function getModuleId (file: string) {
   return id
 }
 
-export function transformRemoteFunctions (): Plugin {
+export function transformServerFiles (): Plugin {
   return {
     name: 'vite-plugin-remote-functions',
     enforce: 'post',
@@ -21,7 +21,7 @@ export function transformRemoteFunctions (): Plugin {
       }
 
       const moduleId = getModuleId(id)
-      const result = await transformExports(code, moduleId)
+      const result = await transformExportsToRemoteFunctions(code, moduleId)
 
       return {
         code: result
@@ -30,7 +30,7 @@ export function transformRemoteFunctions (): Plugin {
   }
 }
 
-async function transformExports (src: string, moduleId: string) {
+async function transformExportsToRemoteFunctions (src: string, moduleId: string) {
   await init
 
   const [, exports] = parse(src)
