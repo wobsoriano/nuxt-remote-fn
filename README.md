@@ -71,6 +71,12 @@ export async function getTodos(this: H3Event, otherArg: any) {
 }
 ```
 
+## Development
+
+- Run `pnpm install`.
+- Run `pnpm dev:prepare` to generate type stubs.
+- Use `pnpm dev` to start [playground](./playground) in development mode.
+
 ## Credits
 
 This project is inspired by [Telefunc](https://telefunc.com) and [nuxt-server-fn](https://github.com/antfu/nuxt-server-fn).
