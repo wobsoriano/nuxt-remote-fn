@@ -6,7 +6,7 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
     if (!isMethod(event, 'POST')) {
       throw createError({
         statusCode: 401,
-        statusMessage: 'Only POST requests are allowed.'
+        statusMessage: '[nuxt-remote-fn]: Only POST requests are allowed.'
       })
     }
 
@@ -17,7 +17,7 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
     if (!(moduleId in functions)) {
       throw createError({
         statusCode: 404,
-        statusMessage: 'Unknown module received.'
+        statusMessage: '[nuxt-remote-fn]: Unknown module received.'
       })
     }
 
