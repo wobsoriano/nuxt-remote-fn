@@ -26,9 +26,3 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
     return result
   })
 }
-
-export function Abort () {
-  return createError({
-    statusCode: 403
-  })
-}
