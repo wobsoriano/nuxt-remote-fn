@@ -65,7 +65,7 @@ H3 event is available as `this` for functions:
 import type { H3Event } from 'h3'
 
 export async function getTodo(this: H3Event, id: number) {
-  const { event, node, path } = this
+  const { context, node, path } = this
   // ...
 }
 ```
@@ -87,7 +87,7 @@ export default defineNuxtConfig({
 import { getEvent } from 'nuxt-remote-fn/server'
 
 export async function getTodo(id: number) {
-  const { event, node, path } = getEvent()
+  const { context, node, path } = getEvent()
   // ...
 }
 ```
