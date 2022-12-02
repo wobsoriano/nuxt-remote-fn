@@ -75,7 +75,7 @@ export async function getTodos(this: H3Event, otherArg: any) {
 
 Sharing data from server to client involves a lot of ceremony. i.e. an `eventHandler` needs to be set up and `useFetch` needs to be used in the browser.
 
-Wouldn't it be nice if all of that was automatically handled and all you'd need to do is import `getTodos` on the client, just like you do in `eventHandler`'s?
+Wouldn't it be nice if all of that was automatically handled and all you'd need to do is import `getTodos` on the client, just like you do in `eventHandler`'s? That's where `nuxt-remote-fn` comes in. With `nuxt-remote-fn`, all exported functions from `.server.` files automatically become available to the browser as well.
 
 ## Development
 
