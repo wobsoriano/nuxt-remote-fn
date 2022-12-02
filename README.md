@@ -86,7 +86,7 @@ export default defineNuxtConfig({
 ```ts
 import { getEvent } from 'nuxt-remote-fn/server'
 
-export async function createTodo(id: number) {
+export async function getTodo(id: number) {
   const { event, node, path } = getEvent()
   // ...
 }
