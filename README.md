@@ -62,12 +62,11 @@ Checkout [the playground example](/playground).
 H3 event is available as `this` for functions:
 
 ```ts
-import { readBody } from 'h3'
 import type { H3Event } from 'h3'
 
-export async function createTodo(this: H3Event, todo: any) {
-  const body = await readBody(this)
-  return prisma.todo.create({ data: todo })
+export async function getTodo(this: H3Event, id: number) {
+  const { event, node, path } = this
+  // ...
 }
 ```
 
@@ -86,12 +85,10 @@ export default defineNuxtConfig({
 
 ```ts
 import { getEvent } from 'nuxt-remote-fn/server'
-import { readBody } from 'h3'
 
-export async function createTodo(todo: any) {
-  const event = getEvent()
-  const body = await readBody(event)
-  return prisma.todo.create({ data: todo })
+export async function createTodo(id: number) {
+  const { event, node, path } = getEvent()
+  // ...
 }
 ```
 
