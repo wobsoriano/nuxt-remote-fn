@@ -41,9 +41,11 @@ importers:
     specifiers:
       '@prisma/client': ^4.6.1
       esno: ^0.16.3
+      nuxt-remote-fn: workspace:*
       prisma: ^4.6.1
     dependencies:
       '@prisma/client': 4.6.1_prisma@4.6.1
+      nuxt-remote-fn: link:..
     devDependencies:
       esno: 0.16.3
       prisma: 4.6.1

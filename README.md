@@ -59,14 +59,15 @@ Checkout [the playground example](/playground).
 
 ## H3 Event
 
-The h3 event is available as `this` for functions:
+The access the H3 event, you can use the `getEvent` function:
 
 ```ts
+import { getEvent } from 'nuxt-remote-fn/server'
 import { readBody } from 'h3'
-import type { H3Event } from 'h3'
 
-export async function getTodos(this: H3Event, otherArg: any) {
-  const body = await readBody(this)
+export async function getTodos() {
+  const event = getEvent()
+  const body = await readBody(event)
   // ...
 }
 ```
@@ -92,7 +93,6 @@ Wouldn't it be nice if all of that was automatically handled and all you'd need 
 ## Development
 
 - Run `cp playground/.env.example playground/.env`
-- Run `pnpm dev:prepare` to generate type stubs.
 - Use `pnpm dev` to start [playground](./playground) in development mode.
 
 ## Credits

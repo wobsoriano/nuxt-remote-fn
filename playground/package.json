@@ -12,6 +12,7 @@
     "schema": "./prisma/schema.prisma"
   },
   "dependencies": {
-    "@prisma/client": "^4.6.1"
+    "@prisma/client": "^4.6.1",
+    "nuxt-remote-fn": "workspace:*"
   }
 }

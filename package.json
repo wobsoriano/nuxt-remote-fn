@@ -29,11 +29,12 @@
   "main": "./dist/module.cjs",
   "types": "./dist/types.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "*.d.ts"
   ],
   "scripts": {
     "prepack": "nuxt-module-build",
-    "dev": "nuxi dev playground",
+    "dev": "pnpm prepack && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "lint": "eslint .",
