@@ -1,31 +1,6 @@
-import { AsyncLocalStorage } from 'async_hooks'
-import type { EventHandler, H3Event } from 'h3'
 import { eventHandler, isMethod, readBody, createError } from 'h3'
 import type { ModuleOptions } from '../module'
-
-const DEFAULT_CONTEXT = {}
-
-const asyncLocalStorage = new AsyncLocalStorage<H3Event>()
-
-/**
- * Access the event object. Uses the experimental async_hooks.
- * @experimental
- * @see [source](https://github.com/nodejs/node/blob/v18.0.0/lib/async_hooks.js)
- */
-export function getEvent (): H3Event {
-  return asyncLocalStorage.getStore() || DEFAULT_CONTEXT as H3Event
-}
-
-function wrapEventHandler (handler: EventHandler): EventHandler {
-  return eventHandler((event) => {
-    const context = {
-      node: event.node,
-      context: event.context,
-      path: event.path
-    }
-    return asyncLocalStorage.run(context as H3Event, () => handler(event))
-  })
-}
+import { getEvent, wrapEventHandler } from './experimental'
 
 export function createRemoteFnHandler<T> (functions: T, options: ModuleOptions): any {
   const handler = eventHandler(async (event) => {
@@ -55,4 +30,8 @@ export function createRemoteFnHandler<T> (functions: T, options: ModuleOptions):
   if (options.experimentalEvent) { return wrapEventHandler(handler) }
 
   return handler
+}
+
+export {
+  getEvent
 }

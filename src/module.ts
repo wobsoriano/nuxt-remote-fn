@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url'
 import { addImports, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
 import fg from 'fast-glob'
-import { join, resolve } from 'pathe'
+import { join } from 'pathe'
 import dedent from 'dedent'
 import { getModuleId, transformServerFiles } from './runtime/transformer'
 
