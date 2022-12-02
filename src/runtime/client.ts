@@ -10,7 +10,7 @@ export function callRemoteFunction <T> (path: string, args: any[]) {
       if (response.status === 404) {
         const functionName = path.split('.')[1]
         // eslint-disable-next-line no-console
-        console.error(`[nuxt-remote-fn]: Make sure ${functionName} returns any data.`)
+        console.error(`[nuxt-remote-fn]: Make sure ${functionName} returns something.`)
       }
     }
   })

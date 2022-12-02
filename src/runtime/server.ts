@@ -5,8 +5,8 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
   return eventHandler(async (event) => {
     if (!isMethod(event, 'POST')) {
       throw createError({
-        statusCode: 401,
-        statusMessage: '[nuxt-remote-fn]: Only POST requests are allowed.'
+        statusCode: 405,
+        statusMessage: `[nuxt-remote-fn]: method "${event.node.req.method}" is not allowed.`
       })
     }
 
