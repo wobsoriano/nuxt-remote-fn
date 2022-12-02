@@ -71,6 +71,12 @@ export async function getTodos(this: H3Event, otherArg: any) {
 }
 ```
 
+## Why this module
+
+Sharing data from server to client involves a lot of ceremony. i.e. an `eventHandler` needs to be set up and `useFetch` needs to be used in the browser.
+
+Wouldn't it be nice if all of that was automatically handled and all you'd need to do is import `getTodos` on the client, just like you do in `eventHandler`'s?
+
 ## Development
 
 - Run `cp playground/.env.example playground/.env`
