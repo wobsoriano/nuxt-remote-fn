@@ -1,23 +1,30 @@
 import { fileURLToPath } from 'url'
 import { addImports, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
 import fg from 'fast-glob'
-import { join } from 'pathe'
+import { join, resolve } from 'pathe'
 import dedent from 'dedent'
 import { getModuleId, transformServerFiles } from './runtime/transformer'
 
-export default defineNuxtModule({
+export interface ModuleOptions {
+  experimentalEvent: boolean
+}
+
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-remote-fn',
     configKey: 'remoteFn'
   },
-  async setup (_, nuxt) {
+  defaults: {
+    experimentalEvent: false
+  },
+  async setup (options, nuxt) {
     const extGlob = '**/*.server.{ts,js,mjs}'
     const files: string[] = []
 
     // Transpile runtime and handler
     const handlerPath = join(nuxt.options.buildDir, 'remote-event-handler.ts')
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    nuxt.options.build.transpile.push(runtimeDir, handlerPath)
+    nuxt.options.build.transpile.push(runtimeDir)
 
     nuxt.hook('builder:watch', async (e, path) => {
       if (e === 'change') { return }
@@ -55,7 +62,7 @@ export default defineNuxtModule({
           ${filesWithId.map(i => `import * as ${i.id} from '${i.file}'`).join('\n')}
           export default createRemoteFnHandler({
             ${filesWithId.map(i => i.id).join(',\n')}
-          })
+          }, ${JSON.stringify(options)})
         `
       }
     })

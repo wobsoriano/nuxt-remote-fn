@@ -1,3 +1,4 @@
+import { getEvent } from 'nuxt-remote-fn/server'
 import { prisma } from './prisma'
 
 export async function getTodos () {
@@ -14,6 +15,9 @@ export function getTodo (id: number) {
 }
 
 export async function toggleTodo (id: number) {
+  const { path } = getEvent()
+  console.log('path', path)
+
   const todo = await getTodo(id)
   return prisma.todo.update({
     where: { id },
