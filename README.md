@@ -37,7 +37,7 @@ Directly use any SQL/ORM query to retrieve & mutate data on client.
 
 ```vue
 <script setup lang="ts">
-import { getTodos } from '~~/lib/todo.server'
+import { getTodos } from '@/lib/todo.server'
 
 const todos = await getTodos()
 </script>
