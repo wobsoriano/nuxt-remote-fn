@@ -71,6 +71,18 @@ export async function getTodos(this: H3Event, otherArg: any) {
 }
 ```
 
+## useAsyncData
+
+`nuxt-remote-fn` can work seamlessly with `[useAsyncData](https://nuxt.com/docs/api/composables/use-async-data/)`:
+
+```vue
+<script setup lang="ts">
+import { getTodos } from '@/lib/todo.server'
+
+const { data: todos } = await useAsyncData('todos', getTodos)
+</script>
+```
+
 ## Why this module
 
 Sharing data from server to client involves a lot of ceremony. i.e. an `eventHandler` needs to be set up and `useFetch` needs to be used in the browser.

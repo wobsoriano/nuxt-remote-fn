@@ -2,7 +2,7 @@
 import { useAsyncData } from '#app'
 import { deleteTodo, toggleTodo, getTodos } from '~~/lib/todo.server'
 
-const { data: todos, refresh } = await useAsyncData(() => getTodos())
+const { data: todos, refresh } = await useAsyncData('todos', () => getTodos())
 
 async function handleChange (id: number) {
   await toggleTodo(id)
