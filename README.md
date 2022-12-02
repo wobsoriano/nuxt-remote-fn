@@ -66,6 +66,7 @@ import type { H3Event } from 'h3'
 
 export async function getTodo(this: H3Event, id: number) {
   const { context, node, path } = this
+  const { req, res } = node 
   // ...
 }
 ```
@@ -88,6 +89,7 @@ import { getEvent } from 'nuxt-remote-fn/server'
 
 export async function getTodo(id: number) {
   const { context, node, path } = getEvent()
+  const { req, res } = node 
   // ...
 }
 ```
