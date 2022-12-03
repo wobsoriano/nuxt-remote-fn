@@ -28,7 +28,7 @@ export default defineNuxtModule({
     })
 
     addServerHandler({
-      route: '/api/__remote/:path',
+      route: '/api/__remote/:moduleId/:functionName',
       handler: handlerPath
     })
 
@@ -47,7 +47,7 @@ export default defineNuxtModule({
       write: true,
       getContents () {
         const filesWithId = files.map(file => ({
-          file: file.replace(/\.{ts,js,mjs}$/, ''),
+          file: file.replace(/\.ts$/, ''),
           id: getModuleId(file)
         }))
         return dedent`
