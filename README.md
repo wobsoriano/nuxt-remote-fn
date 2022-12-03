@@ -1,6 +1,6 @@
 # nuxt-remote-fn
 
-Remote Functions. Instead of [Event Handlers](https://nitro.unjs.io/guide/introduction/routing).
+`nuxt-remote-fn` allows you to call your backend-functions from the frontend, as if they were local. No need for an extra language or DSL to learn and maintain.
 
 ## Install
 
