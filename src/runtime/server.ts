@@ -1,4 +1,4 @@
-import { eventHandler, isMethod, getQuery, createError } from 'h3'
+import { eventHandler, isMethod, createError } from 'h3'
 import { useEvent, wrapEventHandler } from './experimental'
 
 export function createRemoteFnHandler<T> (functions: T): any {
