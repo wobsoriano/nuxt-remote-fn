@@ -59,7 +59,7 @@ Checkout [the playground example](/playground).
 
 ## H3 Event
 
-The `useEvent` hook provides the `event` object:
+The `useEvent` hook provides the `event` object of the current request:
 
 ```ts
 import { useEvent } from 'nuxt-remote-fn/server'
