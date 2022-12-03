@@ -1,6 +1,6 @@
 {
   "name": "nuxt-remote-fn",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Remote Functions. Instead of Event Handlers.",
   "keywords": [
     "nuxt",
