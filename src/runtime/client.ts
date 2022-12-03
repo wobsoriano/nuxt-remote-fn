@@ -3,8 +3,8 @@ import { $fetch } from 'ofetch'
 export function callRemoteFunction <T> (path: string, args: any[]) {
   return $fetch<T>(`/api/__remote/${path}`, {
     method: 'POST',
-    body: {
-      input: args
+    query: {
+      input: JSON.stringify(args)
     },
     onResponse ({ response }) {
       if (response.status === 404) {

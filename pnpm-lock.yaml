@@ -19,6 +19,7 @@ importers:
       nuxt-remote-fn: workspace:*
       ofetch: ^1.0.0
       pathe: ^1.0.0
+      unctx: ^2.1.1
     dependencies:
       '@nuxt/kit': 3.0.0
       dedent: 0.7.0
@@ -27,6 +28,7 @@ importers:
       h3: 1.0.1
       ofetch: 1.0.0
       pathe: 1.0.0
+      unctx: 2.1.1
     devDependencies:
       '@nuxt/module-builder': 0.2.1
       '@nuxt/schema': 3.0.0

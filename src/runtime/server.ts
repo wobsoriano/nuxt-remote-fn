@@ -1,9 +1,8 @@
-import { eventHandler, isMethod, readBody, createError } from 'h3'
-import type { ModuleOptions } from '../module'
-import { getEvent, wrapEventHandler } from './experimental'
+import { eventHandler, isMethod, getQuery, createError } from 'h3'
+import { useEvent, wrapEventHandler } from './experimental'
 
-export function createRemoteFnHandler<T> (functions: T, options: ModuleOptions): any {
-  const handler = eventHandler(async (event) => {
+export function createRemoteFnHandler<T> (functions: T): any {
+  return wrapEventHandler(eventHandler((event) => {
     if (!isMethod(event, 'POST')) {
       throw createError({
         statusCode: 405,
@@ -11,7 +10,7 @@ export function createRemoteFnHandler<T> (functions: T, options: ModuleOptions):
       })
     }
 
-    const { input } = await readBody(event) // arguments
+    const { input } = getQuery(event) // arguments
     const { path } = event.context.params // 'todo.getTodos'
     const [moduleId, functionName] = path.split('.') // ['todo', 'getTodos']
 
@@ -23,15 +22,11 @@ export function createRemoteFnHandler<T> (functions: T, options: ModuleOptions):
     }
 
     // @ts-ignore
-    const result = await functions[moduleId][functionName].apply(event, input)
+    const result = functions[moduleId][functionName].apply(event, JSON.parse(input))
     return result
-  })
-
-  if (options.experimentalEvent) { return wrapEventHandler(handler) }
-
-  return handler
+  }))
 }
 
 export {
-  getEvent
+  useEvent
 }

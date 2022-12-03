@@ -59,35 +59,13 @@ Checkout [the playground example](/playground).
 
 ## H3 Event
 
-H3 event is available as `this` for functions:
+The `useEvent` hook provides the `event` context:
 
 ```ts
-import type { H3Event } from 'h3'
-
-export async function getTodo(this: H3Event, id: number) {
-  const { event, node, path } = this
-  // ...
-}
-```
-
-You can also use the `getEvent` function by enabling `experimentalEvent` option:
-
-```ts
-export default defineNuxtConfig({
-  modules: [
-    'nuxt-remote-fn',
-  ],
-  remoteFn: {
-    experimentalEvent: true
-  }
-})
-```
-
-```ts
-import { getEvent } from 'nuxt-remote-fn/server'
+import { useEvent } from 'nuxt-remote-fn/server'
 
 export async function getTodo(id: number) {
-  const { event, node, path } = getEvent()
+  const { event, node, path } = useEvent()
   // ...
 }
 ```

@@ -5,19 +5,12 @@ import { join } from 'pathe'
 import dedent from 'dedent'
 import { getModuleId, transformServerFiles } from './runtime/transformer'
 
-export interface ModuleOptions {
-  experimentalEvent: boolean
-}
-
-export default defineNuxtModule<ModuleOptions>({
+export default defineNuxtModule({
   meta: {
     name: 'nuxt-remote-fn',
     configKey: 'remoteFn'
   },
-  defaults: {
-    experimentalEvent: false
-  },
-  async setup (options, nuxt) {
+  async setup (_, nuxt) {
     const extGlob = '**/*.server.{ts,js,mjs}'
     const files: string[] = []
 
@@ -62,7 +55,7 @@ export default defineNuxtModule<ModuleOptions>({
           ${filesWithId.map(i => `import * as ${i.id} from '${i.file}'`).join('\n')}
           export default createRemoteFnHandler({
             ${filesWithId.map(i => i.id).join(',\n')}
-          }, ${JSON.stringify(options)})
+          })
         `
       }
     })
