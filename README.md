@@ -59,15 +59,20 @@ Checkout [the playground example](/playground).
 
 ## H3 Event
 
-The `useEvent` hook provides the `event` context:
+The `useEvent` hook provides the `event` object:
 
 ```ts
 import { useEvent } from 'nuxt-remote-fn/server'
 
-export async function getTodo(id: number) {
-  const { context, node, path } = useEvent()
-  const { req, res } = node
-  // ...
+export async function addTodo(todo: Todo) {
+  const event = useEvent()
+  const result = await prisma.todo.create({
+    data: {
+      ...todo,
+      userId: event.context.user.id
+    }
+  })
+  return result
 }
 ```
 
