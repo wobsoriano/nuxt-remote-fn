@@ -16,7 +16,7 @@ export function getTodo (id: number) {
 
 export async function toggleTodo (id: number) {
   const event = useEvent()
-  console.log('headers', await getRequestHeaders(event))
+  console.log(event.context.body)
 
   const todo = await getTodo(id)
   return prisma.todo.update({

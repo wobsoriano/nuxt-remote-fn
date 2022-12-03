@@ -10,7 +10,7 @@ export function createRemoteFnHandler<T> (functions: T): any {
       })
     }
 
-    const { input } = getQuery(event) // arguments
+    const { args } = event.context.body // arguments
     const { path } = event.context.params // 'todo.getTodos'
     const [moduleId, functionName] = path.split('.') // ['todo', 'getTodos']
 
@@ -22,7 +22,7 @@ export function createRemoteFnHandler<T> (functions: T): any {
     }
 
     // @ts-ignore
-    const result = functions[moduleId][functionName].apply(event, JSON.parse(input))
+    const result = functions[moduleId][functionName].apply(event, args)
     return result
   }))
 }
