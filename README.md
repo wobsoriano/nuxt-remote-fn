@@ -76,6 +76,8 @@ export async function addTodo(todo: Todo) {
 }
 ```
 
+You can use all built-in [h3 utilities](https://github.com/unjs/h3#built-in) inside your exported functions.
+
 ## useAsyncData
 
 `nuxt-remote-fn` can work seamlessly with [`useAsyncData`](https://nuxt.com/docs/api/composables/use-async-data/):
