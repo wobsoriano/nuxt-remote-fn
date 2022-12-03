@@ -65,7 +65,8 @@ The `useEvent` hook provides the `event` context:
 import { useEvent } from 'nuxt-remote-fn/server'
 
 export async function getTodo(id: number) {
-  const { event, node, path } = useEvent()
+  const { context, node, path } = useEvent()
+  const { req, res } = node
   // ...
 }
 ```
