@@ -64,12 +64,12 @@ The `useEvent` hook provides the `event` object of the current request:
 ```ts
 import { useEvent } from 'nuxt-remote-fn/server'
 
-export async function updateTodo(todo: Todo) {
+export async function addTodo(todo: Todo) {
   const event = useEvent()
   const result = await prisma.todo.create({
     data: {
       ...todo,
-      id: event.context.params.id
+      userId: event.context.user.id
     }
   })
   return result
