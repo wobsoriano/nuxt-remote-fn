@@ -10,7 +10,7 @@ export function createRemoteFnHandler<T> (functions: T): any {
       })
     }
 
-    const { args } = event.context.body // arguments
+    const { args } = event.context.__body // arguments
     const { path } = event.context.params // 'todo.getTodos'
     const [moduleId, functionName] = path.split('.') // ['todo', 'getTodos']
 
