@@ -32,6 +32,8 @@ async function handleDelete (id: number) {
         </p>
       </li>
     </ul>
+    <hr>
+    <Form @create="refresh" />
   </div>
 </template>
 
