@@ -18,14 +18,14 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
     const body = await readBody(event)
     const { moduleId, functionName } = event.context.params
 
-    return ctx.call(event, () => {
-      if (!(moduleId in functions)) {
-        throw createError({
-          statusCode: 404,
-          statusMessage: '[nuxt-remote-fn]: Unknown module received.'
-        })
-      }
+    if (!(moduleId in functions)) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: '[nuxt-remote-fn]: Unknown module received.'
+      })
+    }
 
+    return ctx.call(event, () => {
       // @ts-ignore
       const result = functions[moduleId][functionName].apply(event, body.args)
       return result
