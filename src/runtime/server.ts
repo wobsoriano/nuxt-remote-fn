@@ -1,8 +1,13 @@
-import { eventHandler, isMethod, createError } from 'h3'
-import { useEvent, wrapEventHandler } from './context'
+import { eventHandler, isMethod, createError, readBody } from 'h3'
+import { createContext } from 'unctx'
+import type { EventHandler, H3Event } from 'h3'
 
-export function createRemoteFnHandler<T> (functions: T): any {
-  return wrapEventHandler(eventHandler((event) => {
+const ctx = createContext<H3Event>()
+
+export const useEvent = ctx.use
+
+export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
+  return eventHandler(async (event) => {
     if (!isMethod(event, 'POST')) {
       throw createError({
         statusCode: 405,
@@ -10,22 +15,20 @@ export function createRemoteFnHandler<T> (functions: T): any {
       })
     }
 
-    const { args } = event.context.__body // arguments
-    const { moduleId, functionName } = event.context.params // todo, getTodos
+    const body = await readBody(event)
+    const { moduleId, functionName } = event.context.params
 
-    if (!(moduleId in functions)) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: '[nuxt-remote-fn]: Unknown module received.'
-      })
-    }
+    return ctx.call(event, () => {
+      if (!(moduleId in functions)) {
+        throw createError({
+          statusCode: 404,
+          statusMessage: '[nuxt-remote-fn]: Unknown module received.'
+        })
+      }
 
-    // @ts-ignore
-    const result = functions[moduleId][functionName].apply(event, args)
-    return result
-  }))
-}
-
-export {
-  useEvent
+      // @ts-ignore
+      const result = functions[moduleId][functionName].apply(event, body.args)
+      return result
+    })
+  })
 }
