@@ -1,5 +1,5 @@
 import { eventHandler, isMethod, createError } from 'h3'
-import { useEvent, wrapEventHandler } from './experimental'
+import { useEvent, wrapEventHandler } from './context'
 
 export function createRemoteFnHandler<T> (functions: T): any {
   return wrapEventHandler(eventHandler((event) => {
