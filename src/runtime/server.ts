@@ -9,7 +9,7 @@ export const useEvent = ctx.use
 export function createRemoteFnHandler<
   F extends Record<string, Record<string, () => any>>,
   M extends keyof F,
-> (functions: F) {
+> (functions: F): EventHandler<any> {
   return eventHandler(async (event) => {
     if (!isMethod(event, 'POST')) {
       throw createError({
