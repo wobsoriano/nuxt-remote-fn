@@ -6,7 +6,10 @@ const ctx = createContext<H3Event>()
 
 export const useEvent = ctx.use
 
-export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
+export function createRemoteFnHandler<
+  F extends Record<string, Record<string, () => any>>,
+  M extends keyof F,
+> (functions: F) {
   return eventHandler(async (event) => {
     if (!isMethod(event, 'POST')) {
       throw createError({
@@ -16,7 +19,10 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
     }
 
     const body = await readBody(event)
-    const { moduleId, functionName } = event.context.params
+    const { moduleId, functionName } = event.context.params as {
+      moduleId: M
+      functionName: keyof F[M]
+    }
 
     if (!(moduleId in functions)) {
       throw createError({
@@ -26,7 +32,6 @@ export function createRemoteFnHandler<T> (functions: T): EventHandler<T> {
     }
 
     return ctx.call(event, () => {
-      // @ts-ignore
       const result = functions[moduleId][functionName].apply(event, body.args)
       return result
     })
