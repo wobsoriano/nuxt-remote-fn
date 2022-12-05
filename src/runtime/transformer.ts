@@ -8,7 +8,7 @@ export function getModuleId (file: string) {
 }
 
 interface Options {
-  extension: string
+  filter: (id: unknown) => boolean
 }
 
 export function transformServerFiles (options: Options): Plugin {
@@ -20,7 +20,7 @@ export function transformServerFiles (options: Options): Plugin {
         return
       }
 
-      if (!id.includes(`.${options.extension}.`)) {
+      if (!options.filter(id)) {
         return
       }
 

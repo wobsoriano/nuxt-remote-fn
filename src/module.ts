@@ -3,10 +3,11 @@ import { addImports, addServerHandler, addTemplate, addVitePlugin, defineNuxtMod
 import fg from 'fast-glob'
 import { join } from 'pathe'
 import dedent from 'dedent'
+import { createFilter } from '@rollup/pluginutils'
 import { getModuleId, transformServerFiles } from './runtime/transformer'
 
 export interface ModuleOptions {
-  extension?: string
+  pattern?: string | string[]
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -15,10 +16,12 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'remoteFn'
   },
   defaults: {
-    extension: 'server'
+    pattern: '**/*.server.{ts,js,mjs}'
   },
   async setup (options, nuxt) {
     const files: string[] = []
+
+    const filter = createFilter(options.pattern)
 
     // Transpile runtime and handler
     const handlerPath = join(nuxt.options.buildDir, 'remote-event-handler.ts')
@@ -27,7 +30,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.hook('builder:watch', async (e, path) => {
       if (e === 'change') { return }
-      if (path.includes(`.${options.extension}.`)) {
+      if (filter(path)) {
         await scanRemoteFunctions()
         await nuxt.callHook('builder:generateApp')
       }
@@ -38,7 +41,7 @@ export default defineNuxtModule<ModuleOptions>({
       handler: handlerPath
     })
 
-    addVitePlugin(transformServerFiles({ extension: options.extension! }))
+    addVitePlugin(transformServerFiles({ filter }))
 
     addImports({
       name: 'callRemoteFunction',
@@ -68,7 +71,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     async function scanRemoteFunctions () {
       files.length = 0
-      const updatedFiles = await fg(`**/*.${options.extension}.{ts,js,mjs}`, {
+      const updatedFiles = await fg(options.pattern!, {
         cwd: nuxt.options.srcDir,
         absolute: true,
         onlyFiles: true,

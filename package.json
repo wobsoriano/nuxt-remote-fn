@@ -43,6 +43,7 @@
     "release": "bumpp && npm publish"
   },
   "dependencies": {
+    "@rollup/pluginutils": "^5.0.2",
     "@nuxt/kit": "^3.0.0",
     "dedent": "^0.7.0",
     "es-module-lexer": "^1.1.0",
