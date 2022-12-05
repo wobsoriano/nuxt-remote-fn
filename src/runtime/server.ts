@@ -26,8 +26,15 @@ export function createRemoteFnHandler<
 
     if (!(moduleId in functions)) {
       throw createError({
-        statusCode: 404,
-        statusMessage: '[nuxt-remote-fn]: Unknown module received.'
+        statusCode: 400,
+        statusMessage: `[nuxt-remote-fn]: Module ${moduleId as string} does not exist. Are you sure the file exists?`
+      })
+    }
+
+    if (typeof functions[moduleId][functionName] !== 'function') {
+      throw createError({
+        statusCode: 400,
+        statusMessage: `[nuxt-remote-fn]: ${functionName as string} is not a function.`
       })
     }
 
