@@ -7,7 +7,11 @@ export function getModuleId (file: string) {
   return id
 }
 
-export function transformServerFiles (): Plugin {
+interface Options {
+  extension: string
+}
+
+export function transformServerFiles (options: Options): Plugin {
   return {
     name: 'vite-plugin-remote-functions',
     enforce: 'post',
@@ -16,7 +20,7 @@ export function transformServerFiles (): Plugin {
         return
       }
 
-      if (!id.includes('.server.')) {
+      if (!id.includes(`.${options.extension}.`)) {
         return
       }
 

@@ -5,13 +5,19 @@ import { join } from 'pathe'
 import dedent from 'dedent'
 import { getModuleId, transformServerFiles } from './runtime/transformer'
 
-export default defineNuxtModule({
+export interface ModuleOptions {
+  extension?: string
+}
+
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-remote-fn',
     configKey: 'remoteFn'
   },
-  async setup (_, nuxt) {
-    const extGlob = '**/*.server.{ts,js,mjs}'
+  defaults: {
+    extension: 'server'
+  },
+  async setup (options, nuxt) {
     const files: string[] = []
 
     // Transpile runtime and handler
@@ -21,7 +27,7 @@ export default defineNuxtModule({
 
     nuxt.hook('builder:watch', async (e, path) => {
       if (e === 'change') { return }
-      if (path.includes('.server.')) {
+      if (path.includes(`.${options.extension}.`)) {
         await scanRemoteFunctions()
         await nuxt.callHook('builder:generateApp')
       }
@@ -32,7 +38,7 @@ export default defineNuxtModule({
       handler: handlerPath
     })
 
-    addVitePlugin(transformServerFiles())
+    addVitePlugin(transformServerFiles({ extension: options.extension! }))
 
     addImports({
       name: 'callRemoteFunction',
@@ -62,7 +68,7 @@ export default defineNuxtModule({
 
     async function scanRemoteFunctions () {
       files.length = 0
-      const updatedFiles = await fg(extGlob, {
+      const updatedFiles = await fg(`**/*.${options.extension}.{ts,js,mjs}`, {
         cwd: nuxt.options.srcDir,
         absolute: true,
         onlyFiles: true,
