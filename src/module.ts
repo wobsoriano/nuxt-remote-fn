@@ -38,6 +38,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     addServerHandler({
       route: '/api/__remote/:moduleId/:functionName',
+      method: 'post',
       handler: handlerPath
     })
 
