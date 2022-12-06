@@ -1,4 +1,4 @@
-import { eventHandler, isMethod, createError, readBody } from 'h3'
+import { eventHandler, createError, readBody } from 'h3'
 import { createContext } from 'unctx'
 import type { EventHandler, H3Event } from 'h3'
 
