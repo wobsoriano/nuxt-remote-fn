@@ -99,6 +99,7 @@ Wouldn't it be nice if all of that was automatically handled and all you'd need 
 ## Development
 
 - Run `cp playground/.env.example playground/.env`
+- Run `pnpm dev:prepare` to generate type stubs.
 - Use `pnpm dev` to start [playground](./playground) in development mode.
 
 ## Credits
