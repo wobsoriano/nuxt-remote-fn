@@ -1,6 +1,7 @@
 {
   "name": "nuxt-remote-fn",
   "version": "0.1.19",
+  "packageManager": "pnpm@7.18.0",
   "description": "Remote Functions. Instead of Event Handlers.",
   "keywords": [
     "nuxt",
@@ -34,17 +35,19 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build",
-    "dev": "pnpm prepack && nuxi dev playground",
+    "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "pnpm prepack",
-    "release": "bumpp && npm publish"
+    "release": "bumpp && npm publish",
+    "update-deps": "taze -w && pnpm i",
+    "postinstall": "cd playground && npx prisma migrate dev --name init && npx prisma db seed"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^5.0.2",
     "@nuxt/kit": "^3.0.0",
+    "@rollup/pluginutils": "^5.0.2",
     "dedent": "^0.7.0",
     "es-module-lexer": "^1.1.0",
     "fast-glob": "^3.2.12",
@@ -57,10 +60,13 @@
     "@nuxt/module-builder": "^0.2.1",
     "@nuxt/schema": "^3.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@prisma/client": "^4.7.1",
     "@types/dedent": "^0.7.0",
     "bumpp": "^8.2.1",
-    "eslint": "^8.28.0",
+    "eslint": "^8.29.0",
+    "esno": "^0.16.3",
     "nuxt": "^3.0.0",
-    "nuxt-remote-fn": "workspace:*"
+    "prisma": "^4.7.1",
+    "taze": "^0.8.4"
   }
 }

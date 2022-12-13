@@ -1,10 +1,8 @@
 import { defineNuxtConfig } from 'nuxt/config'
+import Module from '../src/module'
 
 export default defineNuxtConfig({
   modules: [
-    'nuxt-remote-fn'
-  ],
-  remoteFn: {
-    experimentalEvent: true
-  }
+    Module
+  ]
 })

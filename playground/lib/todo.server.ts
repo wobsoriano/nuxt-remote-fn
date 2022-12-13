@@ -1,4 +1,4 @@
-import { useEvent } from 'nuxt-remote-fn/server'
+import { useEvent } from '../../src/runtime/server'
 import { prisma } from './prisma'
 
 export async function getTodos () {
