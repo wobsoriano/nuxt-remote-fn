@@ -1,7 +1,7 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
+import { join } from 'pathe'
 import { addImports, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
 import fg from 'fast-glob'
-import { join } from 'pathe'
 import dedent from 'dedent'
 import { createFilter } from '@rollup/pluginutils'
 import { getModuleId, transformServerFiles } from './runtime/transformer'
@@ -29,7 +29,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir)
 
     nuxt.hook('builder:watch', async (e, path) => {
-      if (e === 'change') { return }
+      if (e === 'change') return
       if (filter(path)) {
         await scanRemoteFunctions()
         await nuxt.callHook('builder:generateApp')
