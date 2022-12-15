@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from '#imports'
-import { addTodo } from '@/lib/todo.server'
+import { addTodo } from '~/lib/todo.server'
 
 const title = ref('')
 const content = ref('')
@@ -24,8 +24,15 @@ async function handleSubmit () {
   <div>
     <h1>Add todo</h1>
     <form @submit.prevent="handleSubmit">
-      <input v-model="title" placeholder="Title" type="text"> <br>
-      <textarea v-model="content" placeholder="Content" /> <br>
+      <input
+        v-model="title"
+        placeholder="Title"
+        type="text"
+      > <br>
+      <textarea
+        v-model="content"
+        placeholder="Content"
+      /> <br>
       <button :disabled="submitting">
         Submit
       </button>
