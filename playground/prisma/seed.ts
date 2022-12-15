@@ -1,4 +1,4 @@
-// @ts-ignore
+import consola from 'consola'
 import { PrismaClient, Prisma } from '@prisma/client'
 
 const prisma = new PrismaClient()
@@ -9,19 +9,19 @@ const todoData: Prisma.TodoCreateInput[] = [
 ]
 
 async function main() {
-  console.log(`Start seeding ...`)
+  consola.start('Seeding todo data ...')
   for (const t of todoData) {
     const todo = await prisma.todo.create({
       data: t
     })
-    console.log(`Created todo with id: ${todo.id}`)
+    consola.info(`Created todo with id: ${todo.id}`)
   }
-  console.log(`Seeding finished.`)
+  consola.success('Seeding finished')
 }
 
 main()
   .catch((e) => {
-    console.error(e)
+    consola.error(e)
     process.exit(1)
   })
   .finally(async () => {
