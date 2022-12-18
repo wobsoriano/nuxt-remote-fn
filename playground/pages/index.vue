@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAsyncData } from '#app'
-import { deleteTodo, toggleTodo, getTodos } from '~~/lib/todo.server'
+import { deleteTodo, toggleTodo, getTodos } from '~/lib/todo.server'
 
 const { data: todos, refresh } = await useAsyncData('todos', () => getTodos())
 
@@ -18,16 +18,29 @@ async function handleDelete (id: number) {
 <template>
   <div>
     <ul>
-      <li v-for="todo in todos" :key="todo.id">
+      <li
+        v-for="todo in todos"
+        :key="todo.id"
+      >
         <h2>
           <span>{{ todo.title }}</span>
-          <input type="checkbox" :checked="todo.completed" @change="handleChange(todo.id)">
+          <input
+            type="checkbox"
+            :checked="todo.completed"
+            @change="handleChange(todo.id)"
+          >
           <button @click="handleDelete(todo.id)">
             remove
           </button>
         </h2>
         <p>
-          <span :style="{textDecoration: todo.completed ? 'line-through' : undefined}">{{ todo.content }}</span>
+          <span
+            :style="{
+              textDecoration: todo.completed ? 'line-through' : undefined
+            }"
+          >
+            {{ todo.content }}
+          </span>
           {{ todo.completed ? ' ✅ done' : '' }}
         </p>
       </li>
