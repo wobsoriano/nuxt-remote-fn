@@ -69,8 +69,16 @@ import { decodeAndVerifyJwtToken } from '~/somewhere/in/utils'
 export async function addTodo(todo: Todo) {
   const event = useEvent()
 
-  const authorization = getRequestHeader(event, 'authorization')
-  const user = await decodeAndVerifyJwtToken(authorization.split(' ')[1])
+  async function getUserFromHeader() {
+    const authorization = getRequestHeader(event, 'authorization')
+    if (authorization) {
+      const user = await decodeAndVerifyJwtToken(authorization.split(' ')[1])
+      return user
+    }
+    return null
+  }
+
+  const user = await getUserFromHeader()
 
   if (!user) {
     throw createError({ statusCode: 401 })
@@ -88,6 +96,37 @@ export async function addTodo(todo: Todo) {
 ```
 
 You can use all built-in [h3 utilities](https://github.com/unjs/h3#built-in) inside your exported functions.
+
+## createContext
+
+Each `.server.` file can also export a `createContext` function that is called for each incoming request:
+
+```ts
+export function createContext() {
+  const event = useEvent()
+
+  async function getUserFromHeader() {
+    const authorization = getRequestHeader(event, 'authorization')
+    if (authorization) {
+      const user = await decodeAndVerifyJwtToken(authorization.split(' ')[1])
+      return user
+    }
+    return null
+  }
+
+  event.context.user = await getUserFromHeader()
+}
+
+export async function addTodo(todo: Todo) {
+  const event = useEvent()
+
+  if (!event.context.user) {
+    throw createError({ statusCode: 401 })
+  }
+
+  // addTodo logic
+}
+```
 
 ## useAsyncData
 

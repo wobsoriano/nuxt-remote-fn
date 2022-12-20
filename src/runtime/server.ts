@@ -34,6 +34,10 @@ export function createRemoteFnHandler<
         statusMessage: `[nuxt-remote-fn]: ${functionName as string} is not a function.`
       })
     }
+
+    if ('createContext' in functions[moduleId]) {
+      await functions[moduleId]['createContext'].apply(event)
+    }
   
     const result = functions[moduleId][functionName].apply(event, body.args)
     return result
