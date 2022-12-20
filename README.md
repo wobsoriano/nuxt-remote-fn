@@ -79,7 +79,7 @@ export async function addTodo(todo: Todo) {
   const result = await prisma.todo.create({
     data: {
       ...todo,
-      userId: event.context.user.id
+      userId: user.id
     }
   })
 
