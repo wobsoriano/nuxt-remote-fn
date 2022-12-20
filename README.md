@@ -59,19 +59,30 @@ Checkout [the playground example](/playground).
 
 ## H3 Event
 
-The `useEvent` hook provides the `event` object of the current request:
+The `useEvent` hook provides the `event` object of the current request. You can use it to check headers, log requests, or extend the event's request object.
 
 ```ts
 import { useEvent } from 'nuxt-remote-fn/server'
+import { getRequestHeader, createError } from 'h3'
+import { decodeAndVerifyJwtToken } from '~/somewhere/in/utils'
 
 export async function addTodo(todo: Todo) {
   const event = useEvent()
+
+  const authorization = getRequestHeader(event, 'authorization')
+  const user = await decodeAndVerifyJwtToken(authorization.split(' ')[1])
+
+  if (!user) {
+    throw createError({ statusCode: 401 })
+  }
+
   const result = await prisma.todo.create({
     data: {
       ...todo,
       userId: event.context.user.id
     }
   })
+
   return result
 }
 ```
