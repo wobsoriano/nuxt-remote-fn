@@ -26,7 +26,7 @@ export default defineNuxtModule<ModuleOptions>({
     // Transpile runtime and handler
     const handlerPath = join(nuxt.options.buildDir, 'remote-event-handler.ts')
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    nuxt.options.build.transpile.push(runtimeDir)
+    nuxt.options.build.transpile.push(runtimeDir, handlerPath)
 
     nuxt.hook('builder:watch', async (e, path) => {
       if (e === 'change') return

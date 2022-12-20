@@ -15,7 +15,6 @@ specifiers:
   fast-glob: ^3.2.12
   h3: ^1.0.2
   nuxt: ^3.0.0
-  ofetch: ^1.0.0
   pathe: ^1.0.0
   prisma: ^4.7.1
   taze: ^0.8.5
@@ -28,7 +27,6 @@ dependencies:
   es-module-lexer: 1.1.0
   fast-glob: 3.2.12
   h3: 1.0.2
-  ofetch: 1.0.0
   pathe: 1.0.0
 
 devDependencies:
@@ -4308,6 +4306,7 @@ packages:
       destr: 1.2.2
       node-fetch-native: 1.0.1
       ufo: 1.0.1
+    dev: true
 
   /ohash/1.0.0:
     resolution: {integrity: sha512-kxSyzq6tt+6EE/xCnD1XaFhCCjUNUaz3X30rJp6mnjGLXAAvuPFqohMdv0aScWzajR45C29HyBaXZ8jXBwnh9A==}
