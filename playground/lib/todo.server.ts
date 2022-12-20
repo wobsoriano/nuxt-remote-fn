@@ -15,9 +15,6 @@ export function getTodo (id: number) {
 }
 
 export async function toggleTodo (id: number) {
-  const event = useEvent()
-  console.log(event.context.params)
-
   const todo = await getTodo(id)
   return prisma.todo.update({
     where: { id },
@@ -37,4 +34,9 @@ export function addTodo ({ title, content }: { title: string; content: string })
       completed: false
     }
   })
+}
+
+export function createContext() {
+  const event = useEvent()
+  // console.log('event.context.params', event.context.params)
 }

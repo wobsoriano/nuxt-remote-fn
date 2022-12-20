@@ -1,29 +1,33 @@
 import { eventHandler, createError, readBody } from 'h3'
-import { createContext } from 'unctx'
+import { AsyncLocalStorage } from 'node:async_hooks';
 import type { EventHandler, H3Event } from 'h3'
 
-const ctx = createContext<H3Event>()
+const DEFAULT_CONTEXT = {} as H3Event;
 
-export const useEvent = ctx.use
+const asyncLocalStorage = new AsyncLocalStorage<H3Event>();
+
+export function useEvent(): H3Event {
+  return asyncLocalStorage.getStore() || DEFAULT_CONTEXT;
+}
 
 export function createRemoteFnHandler<
   F extends Record<string, Record<string, () => any>>,
   M extends keyof F,
 > (functions: F): EventHandler<any> {
-  return eventHandler(async (event) => {
+  const handler = eventHandler(async (event) => {
     const body = await readBody(event)
     const { moduleId, functionName } = event.context.params as {
       moduleId: M
       functionName: keyof F[M]
     }
-
+  
     if (!(moduleId in functions)) {
       throw createError({
         statusCode: 400,
         statusMessage: `[nuxt-remote-fn]: Module ${moduleId as string} does not exist. Are you sure the file exists?`
       })
     }
-
+  
     if (typeof functions[moduleId][functionName] !== 'function') {
       throw createError({
         statusCode: 400,
@@ -31,9 +35,15 @@ export function createRemoteFnHandler<
       })
     }
 
-    return ctx.call(event, () => {
-      const result = functions[moduleId][functionName].apply(event, body.args)
-      return result
-    })
+    if ('createContext' in functions[moduleId]) {
+      await functions[moduleId]['createContext'].apply(event)
+    }
+  
+    const result = functions[moduleId][functionName].apply(event, body.args)
+    return result
+  })
+
+  return eventHandler((event) => {
+    return asyncLocalStorage.run(event, () => handler(event))
   })
 }

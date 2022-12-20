@@ -53,8 +53,7 @@
     "fast-glob": "^3.2.12",
     "h3": "^1.0.2",
     "ofetch": "^1.0.0",
-    "pathe": "^1.0.0",
-    "unctx": "^2.1.1"
+    "pathe": "^1.0.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
