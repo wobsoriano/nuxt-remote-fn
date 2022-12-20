@@ -104,7 +104,7 @@ Wouldn't it be nice if all of that was automatically handled and all you'd need 
 
 ## Credits
 
-This project is inspired by [Telefunc](https://telefunc.com) and [nuxt-server-fn](https://github.com/antfu/nuxt-server-fn).
+This project is inspired by [tRPC](http://trpc.io/), [Telefunc](https://telefunc.com) and [nuxt-server-fn](https://github.com/antfu/nuxt-server-fn).
 
 ## License
 
