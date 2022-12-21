@@ -11,7 +11,7 @@ export function useEvent(): H3Event {
 }
 
 export function createRemoteFnHandler<
-  F extends Record<string, Record<string, () => any>>,
+  F extends Record<string, Record<string, Function>>,
   M extends keyof F,
 > (functions: F): EventHandler<any> {
   const handler = eventHandler(async (event) => {

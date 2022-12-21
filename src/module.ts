@@ -44,11 +44,13 @@ export default defineNuxtModule<ModuleOptions>({
 
     addVitePlugin(transformServerFiles({ filter }))
 
-    addImports({
-      name: 'callRemoteFunction',
-      as: 'callRemoteFunction',
-      from: join(runtimeDir, 'client')
-    })
+    addImports([
+      {
+        name: 'createClient',
+        as: 'createClient',
+        from: join(runtimeDir, 'client')
+      },
+    ])
 
     await scanRemoteFunctions()
 
@@ -61,8 +63,13 @@ export default defineNuxtModule<ModuleOptions>({
           id: getModuleId(file)
         }))
         return dedent`
-          import { createRemoteFnHandler } from '${join(runtimeDir, 'server')}'
-          ${filesWithId.map(i => `import * as ${i.id} from '${i.file}'`).join('\n')}
+          import { createRemoteFnHandler } from ${JSON.stringify(join(runtimeDir, 'server'))}
+          ${filesWithId.map(i => `import * as ${i.id} from ${JSON.stringify(i.file)}`).join('\n')}
+
+          export type RemoteFunction = {
+            ${filesWithId.map(i => `${i.id}: typeof ${i.id}`).join('\n')}
+          }
+
           export default createRemoteFnHandler({
             ${filesWithId.map(i => i.id).join(',\n')}
           })
