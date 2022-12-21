@@ -24,7 +24,7 @@ export default defineNuxtModule<ModuleOptions>({
     const filter = createFilter(options.pattern)
 
     // Transpile runtime and handler
-    const handlerPath = join(nuxt.options.buildDir, 'remote-event-handler.ts')
+    const handlerPath = join(nuxt.options.buildDir, 'remote-handler.ts')
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir, handlerPath)
 
@@ -55,7 +55,7 @@ export default defineNuxtModule<ModuleOptions>({
     await scanRemoteFunctions()
 
     addTemplate({
-      filename: 'remote-event-handler.ts',
+      filename: 'remote-handler.ts',
       write: true,
       getContents () {
         const filesWithId = files.map(file => ({
