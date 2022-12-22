@@ -1,9 +1,10 @@
 import type { Plugin } from 'vite'
 import { init, parse } from 'es-module-lexer'
+import * as path from 'pathe'
 
 export function getModuleId (file: string) {
-  const lastItem = file.split('/')[file.split('/').length - 1] // todo.server.ts
-  const id = lastItem.split('.')[0] // todo
+  const base = path.basename(file, path.extname(file)) // todo.server
+  const id = base.split('.')[0] // todo
   return id
 }
 
