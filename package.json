@@ -43,7 +43,7 @@
     "prepublishOnly": "pnpm prepack",
     "release": "bumpp && npm publish",
     "update-deps": "taze -w && pnpm i",
-    "postinstall": "cd playground && npx prisma migrate dev --name init && npx prisma db seed"
+    "prepare": "cd playground && npx prisma migrate dev --name init && npx prisma db seed"
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0",
