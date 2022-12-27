@@ -83,7 +83,7 @@ export default defineNuxtModule<ModuleOptions>({
         cwd: nuxt.options.srcDir,
         absolute: true,
         onlyFiles: true,
-        ignore: ['!**/node_modules', '!**/.nuxt', '!**/dist', '!**/.output']
+        ignore: ['!**/node_modules', '!**/dist']
       })
       files.push(...new Set(updatedFiles))
       return files
