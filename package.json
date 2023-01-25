@@ -46,7 +46,7 @@
     "prepare": "cd playground && npx prisma migrate dev --name init && npx prisma db seed"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.0.0",
+    "@nuxt/kit": "^3.1.0",
     "@rollup/pluginutils": "^5.0.2",
     "dedent": "^0.7.0",
     "es-module-lexer": "^1.1.0",
