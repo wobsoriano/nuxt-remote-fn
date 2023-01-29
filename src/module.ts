@@ -13,7 +13,8 @@ export interface ModuleOptions {
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-remote-fn',
-    configKey: 'remoteFn'
+    configKey: 'remoteFn',
+    version: '^3.1.0'
   },
   defaults: {
     pattern: '**/*.server.{ts,js,mjs}'
