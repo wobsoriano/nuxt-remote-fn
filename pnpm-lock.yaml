@@ -14,9 +14,9 @@ specifiers:
   es-module-lexer: ^1.1.0
   eslint: ^8.30.0
   fast-glob: ^3.2.12
-  h3: ^1.0.2
+  h3: ^1.1.0
   nuxt: ^3.1.1
-  pathe: ^1.0.0
+  pathe: ^1.1.0
   prisma: ^4.7.1
   taze: ^0.8.5
   tsx: ^3.12.1
@@ -27,8 +27,8 @@ dependencies:
   dedent: 0.7.0
   es-module-lexer: 1.1.0
   fast-glob: 3.2.12
-  h3: 1.0.2
-  pathe: 1.0.0
+  h3: 1.1.0
+  pathe: 1.1.0
 
 devDependencies:
   '@nuxt/eslint-config': 0.1.1_eslint@8.30.0
@@ -1201,7 +1201,7 @@ packages:
       consola: 2.15.3
       mlly: 1.0.0
       mri: 1.2.0
-      pathe: 1.0.0
+      pathe: 1.1.0
       unbuild: 1.0.2
     transitivePeerDependencies:
       - sass
@@ -1304,7 +1304,7 @@ packages:
       externality: 1.0.0
       fs-extra: 11.1.0
       get-port-please: 3.0.1
-      h3: 1.0.2
+      h3: 1.1.0
       knitwork: 1.0.0
       magic-string: 0.27.0
       mlly: 1.1.0
@@ -3705,8 +3705,8 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /h3/1.0.2:
-    resolution: {integrity: sha512-25QqjQMz8pX1NI2rZ/ziNT9B8Aog7jmu2a0o8Qm9kKoH3zOhE+2icVs069h6DEp0g1Dst1+zKfRdRYcK0MogJA==}
+  /h3/1.1.0:
+    resolution: {integrity: sha512-kx3u+RMzY963fU8NNT2ePWgsryAn9DNztPqbHia/M7HgA+rtXKjHjED9/uidcYPmImNwAfJsCachCzh2T3QH2A==}
     dependencies:
       cookie-es: 0.5.0
       destr: 1.2.2
@@ -4479,7 +4479,7 @@ packages:
       globby: 13.1.3
       jiti: 1.16.0
       mri: 1.2.0
-      pathe: 1.0.0
+      pathe: 1.1.0
       typescript: 4.9.4
     dev: true
 
@@ -4487,7 +4487,7 @@ packages:
     resolution: {integrity: sha512-QL108Hwt+u9bXdWgOI0dhzZfACovn5Aen4Xvc8Jasd9ouRH4NjnrXEiyP3nVvJo91zPlYjVRckta0Nt2zfoR6g==}
     dependencies:
       acorn: 8.8.1
-      pathe: 1.0.0
+      pathe: 1.1.0
       pkg-types: 1.0.1
       ufo: 1.0.1
 
@@ -4575,7 +4575,7 @@ packages:
       fs-extra: 11.1.0
       globby: 13.1.3
       gzip-size: 7.0.0
-      h3: 1.0.2
+      h3: 1.1.0
       hookable: 5.4.2
       http-proxy: 1.18.1
       is-primitive: 3.0.1
@@ -4868,7 +4868,7 @@ packages:
       estree-walker: 3.0.3
       fs-extra: 11.1.0
       globby: 13.1.3
-      h3: 1.0.2
+      h3: 1.1.0
       hash-sum: 2.0.0
       hookable: 5.4.2
       jiti: 1.16.2
@@ -5103,9 +5103,6 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
 
-  /pathe/1.0.0:
-    resolution: {integrity: sha512-nPdMG0Pd09HuSsr7QOKUXO2Jr9eqaDiZvDwdyIhNG5SHYujkQHYKDfGQkulBxvbDHz8oHLsTgKN86LSwYzSHAg==}
-
   /pathe/1.1.0:
     resolution: {integrity: sha512-ODbEPR0KKHqECXW1GoxdDb+AZvULmXjVPy4rt+pGo2+TnjJTIPJQSVS6N63n8T2Ip+syHhbn52OewKicV0373w==}
 
@@ -5130,7 +5127,7 @@ packages:
     dependencies:
       jsonc-parser: 3.2.0
       mlly: 1.0.0
-      pathe: 1.0.0
+      pathe: 1.1.0
 
   /postcss-calc/8.2.4_postcss@8.4.21:
     resolution: {integrity: sha512-SmWMSJmB8MRnnULldx0lQIyhSNvuDl9HfrZkaqqE/WHAhToYsAvDq+yAsA/kIyINDszOp3Rh0GFoNuH5Ypsm3Q==}
@@ -6264,7 +6261,7 @@ packages:
       mkdist: 1.0.0_typescript@4.9.4
       mlly: 1.0.0
       mri: 1.2.0
-      pathe: 1.0.0
+      pathe: 1.1.0
       pkg-types: 1.0.1
       pretty-bytes: 6.0.0
       rimraf: 3.0.2
@@ -6397,7 +6394,7 @@ packages:
       anymatch: 3.1.3
       chokidar: 3.5.3
       destr: 1.2.2
-      h3: 1.0.2
+      h3: 1.1.0
       ioredis: 5.2.4
       listhen: 1.0.1
       mkdir: 0.0.2
