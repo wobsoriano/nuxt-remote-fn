@@ -1,6 +1,4 @@
-import { fileURLToPath } from 'node:url'
-import { join } from 'pathe'
-import { addImports, addServerHandler, addTemplate, addVitePlugin, defineNuxtModule } from '@nuxt/kit'
+import { addImports, addServerHandler, addTemplate, addVitePlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import fg from 'fast-glob'
 import dedent from 'dedent'
 import { createFilter } from '@rollup/pluginutils'
@@ -25,8 +23,9 @@ export default defineNuxtModule<ModuleOptions>({
     const filter = createFilter(options.pattern)
 
     // Transpile runtime and handler
-    const handlerPath = join(nuxt.options.buildDir, 'remote-handler.ts')
-    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
+    const resolver = createResolver(import.meta.url)
+    const handlerPath = resolver.resolve(nuxt.options.buildDir, 'remote-handler')
+    const runtimeDir = resolver.resolve('./runtime')
     nuxt.options.build.transpile.push(runtimeDir, handlerPath)
 
     nuxt.hook('builder:watch', async (e, path) => {
@@ -49,14 +48,14 @@ export default defineNuxtModule<ModuleOptions>({
       {
         name: 'createClient',
         as: 'createClient',
-        from: join(runtimeDir, 'client')
+        from: resolver.resolve(runtimeDir, 'client')
       },
     ])
 
     await scanRemoteFunctions()
 
     addTemplate({
-      filename: 'remote-handler.ts',
+      filename: 'remote-handler',
       write: true,
       getContents () {
         const filesWithId = files.map(file => ({
@@ -64,12 +63,8 @@ export default defineNuxtModule<ModuleOptions>({
           id: getModuleId(file)
         }))
         return dedent`
-          import { createRemoteFnHandler } from ${JSON.stringify(join(runtimeDir, 'server'))}
+          import { createRemoteFnHandler } from ${JSON.stringify(resolver.resolve(runtimeDir, 'server'))}
           ${filesWithId.map(i => `import * as ${i.id} from ${JSON.stringify(i.file)}`).join('\n')}
-
-          export type RemoteFunction = {
-            ${filesWithId.map(i => `${i.id}: typeof ${i.id}`).join('\n')}
-          }
 
           export default createRemoteFnHandler({
             ${filesWithId.map(i => i.id).join(',\n')}
