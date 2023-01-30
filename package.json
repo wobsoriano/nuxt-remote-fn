@@ -44,6 +44,8 @@
     "prepublishOnly": "pnpm prepack",
     "release": "bumpp && npm publish",
     "update-deps": "taze -w && pnpm i",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
     "prepare": "cd playground && npx prisma migrate dev --name init && npx prisma db seed"
   },
   "dependencies": {
@@ -59,6 +61,7 @@
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/module-builder": "^0.2.1",
     "@nuxt/schema": "^3.1.1",
+    "@nuxt/test-utils": "^3.1.1",
     "@prisma/client": "^4.7.1",
     "@types/dedent": "^0.7.0",
     "@types/node": "^18.11.18",
@@ -67,6 +70,7 @@
     "nuxt": "^3.1.1",
     "prisma": "^4.7.1",
     "taze": "^0.8.5",
-    "tsx": "^3.12.1"
+    "tsx": "^3.12.1",
+    "vitest": "^0.28.3"
   }
 }
