@@ -140,19 +140,6 @@ const { data: todos } = await useAsyncData('todos', () => getTodos())
 </script>
 ```
 
-## Client
-
-You can even use the remote client function:
-
-```ts
-import type { RemoteFunction } from '#build/remote-handler'
-import { createClient } from 'nuxt-remote-fn/client'
-
-const client = createClient<RemoteFunction>()
-
-const todo = await client.todo.getTodo(1)
-```
-
 ## Why this module
 
 Sharing data from server to client involves a lot of ceremony. i.e. an `eventHandler` needs to be set up and `useFetch` needs to be used in the browser.
