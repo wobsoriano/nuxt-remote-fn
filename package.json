@@ -49,28 +49,28 @@
     "prepare": "cd playground && npx prisma migrate dev --name init && npx prisma db seed"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.1.1",
+    "@nuxt/kit": "^3.3.2",
     "@rollup/pluginutils": "^5.0.2",
     "dedent": "^0.7.0",
-    "es-module-lexer": "^1.1.0",
+    "es-module-lexer": "^1.2.0",
     "fast-glob": "^3.2.12",
-    "h3": "^1.1.0",
+    "h3": "^1.6.2",
     "pathe": "^1.1.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/module-builder": "^0.2.1",
-    "@nuxt/schema": "^3.1.1",
-    "@nuxt/test-utils": "^3.1.1",
-    "@prisma/client": "^4.7.1",
+    "@nuxt/schema": "^3.3.2",
+    "@nuxt/test-utils": "^3.3.2",
+    "@prisma/client": "^4.11.0",
     "@types/dedent": "^0.7.0",
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.15.10",
     "bumpp": "^8.2.1",
-    "eslint": "^8.30.0",
-    "nuxt": "^3.1.1",
-    "prisma": "^4.7.1",
+    "eslint": "^8.36.0",
+    "nuxt": "^3.3.2",
+    "prisma": "^4.11.0",
     "taze": "^0.8.5",
-    "tsx": "^3.12.1",
-    "vitest": "^0.28.3"
+    "tsx": "^3.12.6",
+    "vitest": "^0.28.5"
   }
 }
