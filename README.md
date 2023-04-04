@@ -140,6 +140,25 @@ const { data: todos } = await useAsyncData('todos', () => getTodos())
 </script>
 ```
 
+## Fetch options:
+
+Since `nuxt.config.ts` file don't accept functions as values, you can use the client directly to add `$fetch` options:
+
+```ts
+import type { RemoteFunction } from '#build/remote-handler'
+import { createClient } from 'nuxt-remote-fn/client'
+
+const client = createClient<RemoteFunction>({
+  fetchOptions: {
+    onRequest({ request }) {
+      // do something
+    }
+  }
+})
+
+const todo = await client.todo.getTodo(1)
+```
+
 ## Why this module
 
 Sharing data from server to client involves a lot of ceremony. i.e. an `eventHandler` needs to be set up and `useFetch` needs to be used in the browser.
