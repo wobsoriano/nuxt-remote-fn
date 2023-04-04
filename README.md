@@ -142,7 +142,7 @@ const { data: todos } = await useAsyncData('todos', () => getTodos())
 
 ## Fetch options:
 
-Since `nuxt.config.ts` file don't accept functions as values, you can use the client directly to add `$fetch` options:
+Since `nuxt.config.ts` file doesn't accept functions as values, you can use the client directly to add `$fetch` options:
 
 ```ts
 import type { RemoteFunction } from '#build/remote-handler'
