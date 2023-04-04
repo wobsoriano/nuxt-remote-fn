@@ -55,7 +55,7 @@ export default defineNuxtModule<ModuleOptions>({
     await scanRemoteFunctions()
 
     addTemplate({
-      filename: 'remote-handler',
+      filename: 'remote-handler.ts',
       write: true,
       getContents () {
         const filesWithId = files.map(file => ({
@@ -65,6 +65,10 @@ export default defineNuxtModule<ModuleOptions>({
         return dedent`
           import { createRemoteFnHandler } from ${JSON.stringify(resolver.resolve(runtimeDir, 'server'))}
           ${filesWithId.map(i => `import * as ${i.id} from ${JSON.stringify(i.file)}`).join('\n')}
+
+          export type RemoteFunction = {
+            ${filesWithId.map(i => `${i.id}: typeof ${i.id}`).join('\n')}
+          }
 
           export default createRemoteFnHandler({
             ${filesWithId.map(i => i.id).join(',\n')}
