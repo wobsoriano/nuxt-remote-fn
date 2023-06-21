@@ -4,8 +4,9 @@ import * as path from 'pathe'
 
 export function getModuleId (file: string) {
   const base = path.basename(file, path.extname(file)) // todo.server
-  const id = base.split('.')[0] // todo
-  return id
+  const id = base.split('.').slice(0,-1).join("_") // todo
+  const validId = id.replaceAll(/[^\p{L}\p{N}_$]/gu, '_').replace(/^\d/, '_$&')
+  return validId
 }
 
 interface Options {
