@@ -1,6 +1,6 @@
 import { eventHandler, createError, readBody } from 'h3'
 import { AsyncLocalStorage } from 'node:async_hooks';
-import type { EventHandler, H3Event } from 'h3'
+import type { EventHandler, EventHandlerRequest, H3Event } from 'h3'
 
 const DEFAULT_CONTEXT = {} as H3Event;
 
@@ -10,15 +10,21 @@ export function useEvent(): H3Event {
   return asyncLocalStorage.getStore() || DEFAULT_CONTEXT;
 }
 
+type ModuleFunctionsMap = Record<string, Record<string, (...args: any[]) => any>>;
+
 export function createRemoteFnHandler<
-  F extends Record<string, Record<string, Function>>,
-  M extends keyof F,
-> (functions: F): EventHandler<any> {
-  const handler = eventHandler(async (event) => {
+  FunctionMap extends ModuleFunctionsMap,
+  ModuleName extends keyof FunctionMap
+> (functions: FunctionMap): EventHandler<EventHandlerRequest, Promise<any>> {
+  const handler = eventHandler<{
+    body: {
+      args: Parameters<FunctionMap[ModuleName][keyof FunctionMap[ModuleName]]>
+    }
+  }>(async (event) => {
     const body = await readBody(event)
     const { moduleId, functionName } = event.context.params as {
-      moduleId: M
-      functionName: keyof F[M]
+      moduleId: ModuleName
+      functionName: keyof FunctionMap[ModuleName]
     }
   
     if (!(moduleId in functions)) {
