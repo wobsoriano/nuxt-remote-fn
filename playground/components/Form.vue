@@ -16,6 +16,8 @@ async function handleSubmit () {
   })
   console.log('added todo: ', todo)
   submitting.value = false
+  title.value = ''
+  content.value = ''
   emit('create')
 }
 </script>
@@ -29,11 +31,15 @@ async function handleSubmit () {
         placeholder="Title"
         type="text"
       > <br>
-      <textarea
+      <input
         v-model="content"
         placeholder="Content"
-      /> <br>
-      <button :disabled="submitting">
+        type="text"
+      > <br>
+      <button
+        type="submit"
+        :disabled="submitting"
+      >
         Submit
       </button>
     </form>
