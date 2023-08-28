@@ -43,13 +43,7 @@ const todos = await getTodos()
 </script>
 
 <template>
-  <ul>
-    <li v-for="todo in todos" :key="todo.id">
-      <NuxtLink :to="`/todos/${todo.id}`">
-        {{ todo.title }}
-      </NuxtLink>
-    </li>
-  </ul>
+  <TodoList :todos="todos" />
 </template>
 ```
 
