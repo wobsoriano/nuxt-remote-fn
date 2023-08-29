@@ -89,7 +89,7 @@ export async function addTodo(todo: Todo) {
 }
 ```
 
-You can use all built-in [h3 utilities](https://github.com/unjs/h3#built-in) inside your exported functions.
+You can use all built-in [h3 utilities](https://github.com/unjs/h3#utilities) inside your exported functions.
 
 ## createContext
 
