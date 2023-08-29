@@ -130,7 +130,7 @@ export async function addTodo(todo: Todo) {
 <script setup lang="ts">
 import { getTodos } from '@/lib/todo.server'
 
-const { data: todos } = await useAsyncData('todos', () => getTodos())
+const { data: todos } = useAsyncData('todos', () => getTodos())
 </script>
 ```
 
