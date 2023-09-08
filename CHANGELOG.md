@@ -1,7 +1,7 @@
 # Changelog
 
 
-## v0.4.2
+## v0.5.0
 
 [compare changes](https://github.com/wobsoriano/nuxt-remote-fn/compare/v0.4.1...v0.4.2)
 
