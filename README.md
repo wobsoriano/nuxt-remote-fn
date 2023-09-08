@@ -53,15 +53,15 @@ Checkout [the playground example](/playground).
 
 ## H3 Event
 
-The `useEvent` hook provides the `event` object of the current request. You can use it to check headers, log requests, or extend the event's request object.
+The `useH3Event` hook provides the `event` object of the current request. You can use it to check headers, log requests, or extend the event's request object.
 
 ```ts
-import { useEvent } from 'nuxt-remote-fn/server'
+import { useH3Event } from 'nuxt-remote-fn/server'
 import { getRequestHeader, createError } from 'h3'
 import { decodeAndVerifyJwtToken } from '~/somewhere/in/utils'
 
 export async function addTodo(todo: Todo) {
-  const event = useEvent()
+  const event = useH3Event()
 
   async function getUserFromHeader() {
     const authorization = getRequestHeader(event, 'authorization')
@@ -97,7 +97,7 @@ Each `.server.` file can also export a `createContext` function that is called f
 
 ```ts
 export function createContext() {
-  const event = useEvent()
+  const event = useH3Event()
 
   async function getUserFromHeader() {
     const authorization = getRequestHeader(event, 'authorization')
@@ -112,7 +112,7 @@ export function createContext() {
 }
 
 export async function addTodo(todo: Todo) {
-  const event = useEvent()
+  const event = useH3Event()
 
   if (!event.context.user) {
     throw createError({ statusCode: 401 })
