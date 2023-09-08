@@ -1,4 +1,4 @@
-import { useEvent } from '../../src/runtime/server'
+import { useH3Event } from '../../src/runtime/server'
 import { prisma } from './prisma'
 
 export async function getTodos () {
@@ -37,6 +37,6 @@ export function addTodo ({ title, content }: { title: string; content: string })
 }
 
 export function createContext() {
-  const event = useEvent()
+  const event = useH3Event()
   // console.log('event.context.params', event.context.params)
 }

@@ -6,7 +6,7 @@ const DEFAULT_CONTEXT = {} as H3Event;
 
 const asyncLocalStorage = new AsyncLocalStorage<H3Event>();
 
-export function useEvent(): H3Event {
+export function useH3Event(): H3Event {
   return asyncLocalStorage.getStore() || DEFAULT_CONTEXT;
 }
 
