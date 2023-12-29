@@ -1,7 +1,7 @@
 {
   "name": "nuxt-remote-fn",
   "version": "0.5.0",
-  "packageManager": "pnpm@8.7.4",
+  "packageManager": "pnpm@8.13.1",
   "description": "Remote Functions. Instead of Event Handlers.",
   "keywords": [
     "nuxt",
@@ -53,24 +53,24 @@
     "@rollup/pluginutils": "^5.1.0",
     "dedent": "^1.5.1",
     "es-module-lexer": "^1.4.1",
-    "fast-glob": "^3.3.1",
+    "fast-glob": "^3.3.2",
     "h3": "^1.9.0",
     "pathe": "^1.1.1"
   },
   "devDependencies": {
-    "@types/node": "^20.10.5",
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.9.0",
-    "@prisma/client": "^5.2.0",
-    "@types/dedent": "^0.7.0",
+    "@prisma/client": "^5.7.1",
+    "@types/dedent": "^0.7.2",
+    "@types/node": "^20.10.5",
     "changelogen": "^0.5.5",
-    "eslint": "^8.49.0",
+    "eslint": "^8.56.0",
     "nuxt": "^3.9.0",
-    "prisma": "^5.2.0",
-    "taze": "^0.11.2",
-    "tsx": "^3.12.8",
-    "vitest": "^0.34.4"
+    "prisma": "^5.7.1",
+    "taze": "^0.13.1",
+    "tsx": "^4.7.0",
+    "vitest": "^1.1.0"
   }
 }
