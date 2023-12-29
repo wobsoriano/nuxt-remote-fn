@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v0.5.1
+
+[compare changes](https://github.com/wobsoriano/nuxt-remote-fn/compare/v0.5.0...v0.5.1)
+
+### 📦 Build
+
+- **deps:** Bump @nuxt/kit to 3.9.0 ([12c481b](https://github.com/wobsoriano/nuxt-remote-fn/commit/12c481b))
+- **deps:** Bump h3 to 1.9.0 ([11d9916](https://github.com/wobsoriano/nuxt-remote-fn/commit/11d9916))
+- **deps:** Bump es-module-lexer to 1.4.1 ([2c7915a](https://github.com/wobsoriano/nuxt-remote-fn/commit/2c7915a))
+- **deps:** Bump @rollup/pluginutils to 5.1.0 ([bc01225](https://github.com/wobsoriano/nuxt-remote-fn/commit/bc01225))
+
+### 🏡 Chore
+
+- Eslint configs update ([fd6f47a](https://github.com/wobsoriano/nuxt-remote-fn/commit/fd6f47a))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.5.0
 
 [compare changes](https://github.com/wobsoriano/nuxt-remote-fn/compare/v0.4.1...v0.5.0)
