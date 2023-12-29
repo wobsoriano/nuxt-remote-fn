@@ -35,10 +35,10 @@
     "*.d.ts"
   ],
   "scripts": {
-    "prepack": "nuxt-module-build",
+    "prepack": "nuxt-module-build build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "pnpm prepack",
@@ -49,7 +49,7 @@
     "prepare": "cd playground && npx prisma migrate dev --name init && npx prisma db seed"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.7.1",
+    "@nuxt/kit": "^3.9.0",
     "@rollup/pluginutils": "^5.0.4",
     "dedent": "^1.5.1",
     "es-module-lexer": "^1.3.0",
@@ -58,16 +58,16 @@
     "pathe": "^1.1.1"
   },
   "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",
-    "@nuxt/module-builder": "^0.5.1",
-    "@nuxt/schema": "^3.7.1",
-    "@nuxt/test-utils": "^3.7.1",
+    "@nuxt/module-builder": "^0.5.5",
+    "@nuxt/schema": "^3.9.0",
     "@prisma/client": "^5.2.0",
     "@types/dedent": "^0.7.0",
-    "@types/node": "^20.6.0",
     "changelogen": "^0.5.5",
     "eslint": "^8.49.0",
-    "nuxt": "^3.7.1",
+    "nuxt": "^3.9.0",
     "prisma": "^5.2.0",
     "taze": "^0.11.2",
     "tsx": "^3.12.8",
