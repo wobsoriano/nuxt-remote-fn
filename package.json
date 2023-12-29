@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.9.0",
-    "@rollup/pluginutils": "^5.0.4",
+    "@rollup/pluginutils": "^5.1.0",
     "dedent": "^1.5.1",
     "es-module-lexer": "^1.4.1",
     "fast-glob": "^3.3.1",
