@@ -46,7 +46,7 @@ async function handleDelete (id: number) {
       </li>
     </ul>
     <hr>
-    <Form @create="refresh" />
+    <TodoForm @create="refresh" />
   </div>
 </template>
 
