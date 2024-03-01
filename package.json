@@ -55,7 +55,7 @@
     "es-module-lexer": "^1.4.1",
     "fast-glob": "^3.3.2",
     "h3": "^1.11.1",
-    "pathe": "^1.1.1"
+    "pathe": "^1.1.2"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
