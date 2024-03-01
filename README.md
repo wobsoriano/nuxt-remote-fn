@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-pnpm add nuxt-remote-fn
+npm install nuxt-remote-fn
 ```
 
 ```ts
