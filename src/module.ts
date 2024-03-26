@@ -1,3 +1,4 @@
+import { relative, resolve } from 'node:path'
 import { addImports, addServerHandler, addTemplate, addVitePlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import fg from 'fast-glob'
 import dedent from 'dedent'
@@ -29,6 +30,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir, handlerPath)
 
     nuxt.hook('builder:watch', async (e, path) => {
+      path = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, path))
       if (e === 'change') return
       if (filter(path)) {
         await scanRemoteFunctions()
