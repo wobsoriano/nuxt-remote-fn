@@ -52,7 +52,7 @@
     "@nuxt/kit": "^3.11.2",
     "@rollup/pluginutils": "^5.1.0",
     "dedent": "^1.5.1",
-    "es-module-lexer": "^1.4.1",
+    "es-module-lexer": "^1.5.0",
     "fast-glob": "^3.3.2",
     "h3": "^1.11.1",
     "pathe": "^1.1.2"
