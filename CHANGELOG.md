@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.5.3
+
+[compare changes](https://github.com/wobsoriano/nuxt-remote-fn/compare/v0.5.2...v0.5.3)
+
+### 🩹 Fixes
+
+- Adopt forward-compatible approach to `builder:watch` ([63124e7](https://github.com/wobsoriano/nuxt-remote-fn/commit/63124e7))
+
+### ❤️ Contributors
+
+- Daniel Roe ([@danielroe](http://github.com/danielroe))
+
 ## v0.5.2
 
 [compare changes](https://github.com/wobsoriano/nuxt-remote-fn/compare/v0.5.1...v0.5.2)
