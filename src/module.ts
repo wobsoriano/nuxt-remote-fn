@@ -30,7 +30,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir, handlerPath)
 
     nuxt.hook('builder:watch', async (e, path) => {
-      path = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, path))
+      path = relative(nuxt.options.rootDir, resolve(nuxt.options.rootDir, path))
       if (e === 'change') return
       if (filter(path)) {
         await scanRemoteFunctions()
@@ -82,7 +82,7 @@ export default defineNuxtModule<ModuleOptions>({
     async function scanRemoteFunctions () {
       files.length = 0
       const updatedFiles = await fg(options.pattern!, {
-        cwd: nuxt.options.srcDir,
+        cwd: nuxt.options.rootDir,
         absolute: true,
         onlyFiles: true,
         ignore: ['!**/node_modules', '!**/dist']
