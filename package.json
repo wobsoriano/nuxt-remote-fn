@@ -46,7 +46,7 @@
     "update-deps": "taze -w && pnpm i",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "prepare": "cd playground && npx prisma migrate dev --name init && npx prisma db seed"
+    "prepare": "cd playground && npx prisma migrate dev --name init"
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.2",
