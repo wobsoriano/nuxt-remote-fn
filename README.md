@@ -18,10 +18,10 @@ export default defineNuxtConfig({
 
 ## Usage
 
-Export your remote functions in `*.server.{ts,js,mjs}` files:
+Export your remote functions in `*.remote.{ts,js,mjs}` files:
 
 ```ts
-// lib/todo.server.ts
+// lib/todo.remote.ts
 
 import { PrismaClient } from '@prisma/client'
 
@@ -37,7 +37,7 @@ Directly use any SQL/ORM query to retrieve & mutate data on client.
 
 ```vue
 <script setup lang="ts">
-import { getTodos } from '@/lib/todo.server'
+import { getTodos } from '~/lib/todo.remote'
 
 const todos = await getTodos()
 </script>
@@ -47,7 +47,7 @@ const todos = await getTodos()
 </template>
 ```
 
-The `.server` part of the filename informs the module that this code should never end up in the browser and to convert it to an API call instead (`POST /api/__remote/todo/getTodos`).
+The `.remote` part of the filename informs the module that this code should never end up in the browser and to convert it to an API call instead (`POST /api/__remote/todo/getTodos`).
 
 Checkout [the playground example](/playground).
 
@@ -93,7 +93,7 @@ You can use all built-in [h3 utilities](https://github.com/unjs/h3#utilities) in
 
 ## createContext
 
-Each `.server.` file can also export a `createContext` function that is called for each incoming request:
+Each `.remote.` file can also export a `createContext` function that is called for each incoming request:
 
 ```ts
 export function createContext() {
@@ -128,7 +128,7 @@ export async function addTodo(todo: Todo) {
 
 ```vue
 <script setup lang="ts">
-import { getTodos } from '@/lib/todo.server'
+import { getTodos } from '~/lib/todo.remote'
 
 const { data: todos } = useAsyncData('todos', () => getTodos())
 </script>

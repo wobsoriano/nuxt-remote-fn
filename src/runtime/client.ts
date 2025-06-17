@@ -16,7 +16,7 @@ export function createClient<T>(options?: Options) {
           ...options?.fetchOptions,
           method: 'POST',
           body: {
-            args
+            args,
           },
         })
       },

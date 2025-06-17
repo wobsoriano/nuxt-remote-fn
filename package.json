@@ -1,7 +1,7 @@
 {
   "name": "nuxt-remote-fn",
   "version": "0.5.3",
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@10.5.2",
   "description": "Remote Functions. Instead of Event Handlers.",
   "keywords": [
     "nuxt",
@@ -16,8 +16,7 @@
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
-      "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
+      "import": "./dist/module.mjs"
     },
     "./server": {
       "import": "./dist/runtime/server.mjs",
@@ -28,7 +27,7 @@
       "types": "./dist/runtime/client.d.ts"
     }
   },
-  "main": "./dist/module.cjs",
+  "main": "./dist/module.mjs",
   "types": "./dist/types.d.ts",
   "files": [
     "dist",
@@ -36,42 +35,40 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",
-    "dev": "nuxi dev playground",
+    "dev": "npm run dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "prepublishOnly": "pnpm prepack",
-    "release": "changelogen --release && npm publish && git push --follow-tags",
-    "update-deps": "taze -w && pnpm i",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "prepare": "cd playground && npx prisma migrate dev --name init && npx prisma db seed"
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.11.2",
-    "@rollup/pluginutils": "^5.1.0",
-    "dedent": "^1.5.1",
-    "es-module-lexer": "^1.5.0",
-    "fast-glob": "^3.3.2",
-    "h3": "^1.11.1",
-    "pathe": "^1.1.2"
+    "@nuxt/kit": "^3.17.5",
+    "@rollup/pluginutils": "^5.2.0",
+    "dedent": "^1.6.0",
+    "es-module-lexer": "^1.7.0",
+    "fast-glob": "^3.3.3",
+    "h3": "^1.15.3",
+    "pathe": "^2.0.3"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@nuxt/eslint-config": "^0.3.1",
-    "@nuxt/module-builder": "^0.5.5",
-    "@nuxt/schema": "^3.11.2",
-    "@nuxt/test-utils": "^3.12.0",
-    "@prisma/client": "^5.12.1",
+    "@nuxt/devtools": "^2.5.0",
+    "@nuxt/eslint-config": "^1.4.1",
+    "@nuxt/module-builder": "^1.0.1",
+    "@nuxt/schema": "^3.17.5",
+    "@nuxt/test-utils": "^3.19.1",
     "@types/dedent": "^0.7.2",
-    "@types/node": "^20.12.5",
-    "changelogen": "^0.5.5",
-    "eslint": "^9.0.0",
-    "nuxt": "^3.11.2",
-    "prisma": "^5.12.1",
-    "taze": "^0.13.3",
-    "tsx": "^4.7.2",
-    "vitest": "^1.4.0"
+    "@types/node": "^24.0.3",
+    "eslint": "^9.29.0",
+    "nuxt": "^3.17.5",
+    "vitest": "^3.2.4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild",
+      "unrs-resolver"
+    ]
   }
 }

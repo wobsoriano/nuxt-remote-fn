@@ -1,8 +1,13 @@
 {
-  "name": "playground",
   "private": true,
-  "prisma": {
-    "seed": "tsx prisma/seed.ts",
-    "schema": "./prisma/schema.prisma"
+  "name": "my-module-playground",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate"
+  },
+  "dependencies": {
+    "nuxt": "^3.17.5"
   }
 }

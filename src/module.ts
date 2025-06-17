@@ -13,12 +13,12 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-remote-fn',
     configKey: 'remoteFn',
-    version: '^3.3.0'
+    version: '^3.3.0',
   },
   defaults: {
-    pattern: '**/*.server.{ts,js,mjs}'
+    pattern: '**/*.{server,remote}.{ts,js,mjs}',
   },
-  async setup (options, nuxt) {
+  async setup(options, nuxt) {
     const files: string[] = []
 
     const filter = createFilter(options.pattern)
@@ -41,7 +41,7 @@ export default defineNuxtModule<ModuleOptions>({
     addServerHandler({
       route: '/api/__remote/:moduleId/:functionName',
       method: 'post',
-      handler: handlerPath
+      handler: handlerPath,
     })
 
     addVitePlugin(transformServerFiles({ filter }))
@@ -50,7 +50,7 @@ export default defineNuxtModule<ModuleOptions>({
       {
         name: 'createClient',
         as: 'createClient',
-        from: resolver.resolve(runtimeDir, 'client')
+        from: resolver.resolve(runtimeDir, 'client'),
       },
     ])
 
@@ -59,10 +59,10 @@ export default defineNuxtModule<ModuleOptions>({
     addTemplate({
       filename: 'remote-handler.ts',
       write: true,
-      getContents () {
+      getContents() {
         const filesWithId = files.map(file => ({
           file: file.replace(/\.ts$/, ''),
-          id: getModuleId(file)
+          id: getModuleId(file),
         }))
         return dedent`
           import { createRemoteFnHandler } from ${JSON.stringify(resolver.resolve(runtimeDir, 'server'))}
@@ -76,19 +76,19 @@ export default defineNuxtModule<ModuleOptions>({
             ${filesWithId.map(i => i.id).join(',\n')}
           })
         `
-      }
+      },
     })
 
-    async function scanRemoteFunctions () {
+    async function scanRemoteFunctions() {
       files.length = 0
       const updatedFiles = await fg(options.pattern!, {
         cwd: nuxt.options.srcDir,
         absolute: true,
         onlyFiles: true,
-        ignore: ['!**/node_modules', '!**/dist']
+        ignore: ['!**/node_modules', '!**/dist'],
       })
       files.push(...new Set(updatedFiles))
       return files
     }
-  }
+  },
 })

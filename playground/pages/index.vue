@@ -1,58 +1,45 @@
 <script setup lang="ts">
-import { useAsyncData } from '#app'
-import { deleteTodo, toggleTodo, getTodos } from '~/lib/todo.server'
+import { ref } from 'vue'
+import { getTodos, addTodo, removeTodo } from '~/lib/todo.remote'
 
-const { data: todos, refresh } = await useAsyncData('todos', () => getTodos())
+const todos = ref(await getTodos())
+const newTodo = ref('')
 
-async function handleChange (id: number) {
-  await toggleTodo(id)
-  await refresh()
+async function handleAdd() {
+  if (!newTodo.value.trim()) return
+  const todo = await addTodo(newTodo.value)
+  todos.value.push(todo)
+  newTodo.value = ''
 }
 
-async function handleDelete (id: number) {
-  await deleteTodo(id)
-  await refresh()
+async function handleRemove(id: number) {
+  await removeTodo(id)
+  todos.value = todos.value.filter(todo => todo.id !== id)
 }
 </script>
 
 <template>
   <div>
+    <h1>Todo list</h1>
+    <form @submit.prevent="handleAdd">
+      <input
+        v-model="newTodo"
+        placeholder="Add todo"
+      >
+      <button type="submit">
+        Add
+      </button>
+    </form>
     <ul>
       <li
         v-for="todo in todos"
         :key="todo.id"
       >
-        <h2>
-          <span>{{ todo.title }}</span>
-          <input
-            type="checkbox"
-            :checked="todo.completed"
-            @change="handleChange(todo.id)"
-          >
-          <button @click="handleDelete(todo.id)">
-            remove
-          </button>
-        </h2>
-        <p>
-          <span
-            :style="{
-              textDecoration: todo.completed ? 'line-through' : undefined
-            }"
-          >
-            {{ todo.content }}
-          </span>
-          {{ todo.completed ? ' ✅ done' : '' }}
-        </p>
+        {{ todo.title }}
+        <button @click="handleRemove(todo.id)">
+          Remove
+        </button>
       </li>
     </ul>
-    <hr>
-    <TodoForm @create="refresh" />
   </div>
 </template>
-
-<style>
-input[type="checkbox"] {
-  cursor: pointer;
-  margin: 13;
-}
-</style>
