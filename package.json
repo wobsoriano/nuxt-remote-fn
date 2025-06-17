@@ -53,6 +53,7 @@
     "pathe": "^2.0.3"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.4",
     "@nuxt/devtools": "^2.5.0",
     "@nuxt/eslint-config": "^1.4.1",
     "@nuxt/module-builder": "^1.0.1",
