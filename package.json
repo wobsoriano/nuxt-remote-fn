@@ -41,7 +41,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit",
+    "release": "pnpm prepack && changeset publish"
   },
   "dependencies": {
     "@nuxt/kit": "^3.17.5",
