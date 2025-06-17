@@ -9,8 +9,12 @@ let todos: Todo[] = [
   { id: 2, title: 'Build something cool', completed: false },
 ]
 
-export async function getTodos() {
-  return todos
+export function getTodos() {
+  return new Promise<Todo[]>((resolve) => {
+    setTimeout(() => {
+      resolve(todos)
+    }, 300)
+  })
 }
 
 export async function addTodo(title: string) {

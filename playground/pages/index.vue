@@ -2,19 +2,20 @@
 import { ref } from 'vue'
 import { getTodos, addTodo, removeTodo } from '~/lib/todo.remote'
 
-const todos = ref(await getTodos())
+const { data: todos, refresh } = await useAsyncData('todos', () => getTodos())
 const newTodo = ref('')
 
 async function handleAdd() {
   if (!newTodo.value.trim()) return
   const todo = await addTodo(newTodo.value)
-  todos.value.push(todo)
+  todos.value?.push(todo)
+  refresh()
   newTodo.value = ''
 }
 
 async function handleRemove(id: number) {
   await removeTodo(id)
-  todos.value = todos.value.filter(todo => todo.id !== id)
+  todos.value = todos.value?.filter(todo => todo.id !== id) ?? []
 }
 </script>
 
