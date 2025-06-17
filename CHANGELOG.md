@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0
+
+### Minor Changes
+
+- 421cf51: Bump `@nuxt/kit` to 3.17.5
 
 ## v0.5.3
 
@@ -62,12 +67,10 @@
 
 [compare changes](https://github.com/wobsoriano/nuxt-remote-fn/compare/v0.4.0...v0.4.1)
 
-
 ### 🩹 Fixes
 
-  - Invalid module ids ([4a9422c](https://github.com/wobsoriano/nuxt-remote-fn/commit/4a9422c))
+- Invalid module ids ([4a9422c](https://github.com/wobsoriano/nuxt-remote-fn/commit/4a9422c))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Kehwar <erickkwr@gmail.com>
-
