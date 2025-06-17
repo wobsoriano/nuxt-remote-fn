@@ -15,23 +15,22 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/types.d.ts",
+      "types": "./dist/types.d.mts",
       "import": "./dist/module.mjs"
     },
     "./server": {
-      "import": "./dist/runtime/server.mjs",
+      "import": "./dist/runtime/server.js",
       "types": "./dist/runtime/server.d.ts"
     },
     "./client": {
-      "import": "./dist/runtime/client.mjs",
+      "import": "./dist/runtime/client.js",
       "types": "./dist/runtime/client.d.ts"
     }
   },
   "main": "./dist/module.mjs",
-  "types": "./dist/types.d.ts",
+  "types": "./dist/types.d.mts",
   "files": [
-    "dist",
-    "*.d.ts"
+    "dist"
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",
